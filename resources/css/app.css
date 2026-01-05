@@ -2,18 +2,281 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Modern Button Animations */
+@keyframes shimmer {
+    0% {
+        box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(14, 165, 233, 0.3), 0 0 20px rgba(14, 165, 233, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.5), 0 0 30px rgba(14, 165, 233, 0.2);
+    }
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(30, 41, 59, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(30, 41, 59, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(30, 41, 59, 0);
+    }
+}
+
+/* Bubble Animation - Gelembung yang meledak */
+@keyframes bubblePop {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Multiple bubbles dengan delay berbeda */
+@keyframes bubble1 {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+        transform: translate(-30px, -50px) scale(0.5);
+    }
+}
+
+@keyframes bubble2 {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        width: 50px;
+        height: 50px;
+        opacity: 0;
+        transform: translate(30px, -40px) scale(0.5);
+    }
+}
+
+@keyframes bubble3 {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        width: 45px;
+        height: 45px;
+        opacity: 0;
+        transform: translate(-10px, 40px) scale(0.5);
+    }
+}
+
+@keyframes bubble4 {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        width: 55px;
+        height: 55px;
+        opacity: 0;
+        transform: translate(40px, 30px) scale(0.5);
+    }
+}
+
+@keyframes bubbleFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.3);
+    }
+}
+
 /* Custom Styles */
 @layer components {
+    /* Primary Button - Navy with smooth transitions */
     .btn-primary {
-        @apply bg-navy-700 hover:bg-navy-800 text-white font-semibold py-2 px-4 rounded-lg transition duration-200;
+        @apply relative bg-navy-700 text-white font-semibold py-2 px-4 rounded-lg overflow-hidden transition-all duration-300 ease-out;
+        @apply hover:bg-navy-800 hover:shadow-lg hover:shadow-navy-800/50 active:scale-95 cursor-pointer;
+        @apply focus:outline-none focus:ring-2 focus:ring-navy-700 focus:ring-offset-2;
     }
-    
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-primary:active::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Secondary Button - Accent/Cyan */
     .btn-secondary {
-        @apply bg-accent-500 hover:bg-accent-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200;
+        @apply relative bg-accent-500 text-white font-semibold py-2 px-4 rounded-lg overflow-hidden transition-all duration-300 ease-out;
+        @apply hover:bg-accent-600 hover:shadow-lg hover:shadow-accent-500/50 active:scale-95 cursor-pointer;
+        @apply focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
     }
-    
+
+    .btn-secondary::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-secondary:active::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Outline Button - Border style */
     .btn-outline {
-        @apply border-2 border-navy-700 text-navy-700 hover:bg-navy-700 hover:text-white font-semibold py-2 px-4 rounded-lg transition duration-200;
+        @apply relative border-2 border-navy-700 text-navy-700 font-semibold py-2 px-4 rounded-lg overflow-hidden transition-all duration-300 ease-out;
+        @apply hover:bg-navy-700 hover:text-white hover:shadow-lg hover:shadow-navy-700/50 active:scale-95 cursor-pointer;
+        @apply focus:outline-none focus:ring-2 focus:ring-navy-700 focus:ring-offset-2;
+    }
+
+    .btn-outline::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(30, 41, 59, 0.1);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-outline:active::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* CTA Button - Attention grabbing */
+    .btn-cta {
+        @apply relative px-8 py-3 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-bold rounded-lg overflow-hidden;
+        @apply transition-all duration-300 ease-out shadow-lg;
+        @apply hover:shadow-2xl hover:shadow-accent-500/50 active:scale-95 cursor-pointer;
+        @apply focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
+    }
+
+    .btn-cta::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-cta:active::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Icon Button */
+    .btn-icon {
+        @apply relative w-10 h-10 rounded-full bg-navy-800 text-white flex items-center justify-center overflow-hidden;
+        @apply transition-all duration-300 ease-out;
+        @apply hover:bg-navy-700 hover:shadow-lg active:scale-90 cursor-pointer;
+        @apply focus:outline-none focus:ring-2 focus:ring-navy-700 focus:ring-offset-2;
+    }
+
+    /* Small Button */
+    .btn-sm {
+        @apply relative px-3 py-1 text-sm font-medium rounded-md overflow-hidden transition-all duration-300;
+        @apply active:scale-95 cursor-pointer;
+    }
+
+    /* Large Button */
+    .btn-lg {
+        @apply relative px-8 py-3 text-lg font-bold rounded-lg overflow-hidden transition-all duration-300;
+        @apply active:scale-95 cursor-pointer;
     }
     
     .input-field {
@@ -51,4 +314,449 @@
     .badge-gray {
         @apply bg-gray-100 text-gray-800;
     }
+
+    /* Bubble Effect untuk Buttons */
+    .bubble {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .bubble.primary {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .bubble.secondary {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .bubble.outline {
+        background: rgba(30, 41, 59, 0.2);
+        border-color: rgba(30, 41, 59, 0.3);
+    }
+
+    .bubble.animate {
+        animation: bubblePop 0.6s ease-out forwards;
+    }
+
+    .bubble.float {
+        animation: bubbleFloat 0.8s ease-out forwards;
+    }
+
+    /* Variasi bubble dengan delay */
+    .bubble.burst-1 {
+        animation: bubble1 0.6s ease-out forwards;
+    }
+
+    .bubble.burst-2 {
+        animation: bubble2 0.6s ease-out forwards;
+    }
+
+    .bubble.burst-3 {
+        animation: bubble3 0.6s ease-out forwards;
+    }
+
+    .bubble.burst-4 {
+        animation: bubble4 0.6s ease-out forwards;
+    }
+}
+
+/* ============================================
+   ADVANCED ANIMATIONS FOR 2026
+   ============================================ */
+
+/* 1. SCROLL-BASED STORYTELLING (SCROLLYTELLING) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleInCenter {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes counterUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Scroll-triggered animation classes */
+.scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-slide-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-slide-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-slide-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-slide-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-scale-in.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.stat-counter {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.stat-counter.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 2. MICRO-INTERACTIONS */
+/* Smooth hover effects for cards */
+.micro-card {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.micro-card:hover {
+    transform: translateY(-4px);
+}
+
+.micro-card:active {
+    transform: translateY(-2px);
+}
+
+/* Input feedback animations */
+@keyframes inputFocus {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.input-animated {
+    position: relative;
+}
+
+.input-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary, #1e3a8a), var(--color-accent, #06b6d4));
+    width: 0;
+    transition: width 0.4s ease-out;
+}
+
+.input-animated:focus::after {
+    width: 100%;
+}
+
+/* Checkmark animation */
+@keyframes checkmarkPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.checkmark-animate {
+    animation: checkmarkPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Button micro-interaction */
+.btn-micro {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease-out;
+}
+
+.btn-micro:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn-micro:active {
+    transform: translateY(0);
+}
+
+/* Link hover underline animation */
+.link-hover {
+    position: relative;
+    transition: color 0.3s ease-out;
+}
+
+.link-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease-out;
+}
+
+.link-hover:hover::after {
+    width: 100%;
+}
+
+/* 3. SKELETON LOADING */
+@keyframes skeleton-loading {
+    0% {
+        background-color: #f0f0f0;
+    }
+    50% {
+        background-color: #e0e0e0;
+    }
+    100% {
+        background-color: #f0f0f0;
+    }
+}
+
+.skeleton {
+    animation: skeleton-loading 2s infinite;
+    border-radius: 0.5rem;
+}
+
+.skeleton-text {
+    height: 1rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 2s infinite;
+    border-radius: 0.25rem;
+}
+
+.skeleton-title {
+    height: 1.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 2s infinite;
+    border-radius: 0.375rem;
+}
+
+.skeleton-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.skeleton-card .skeleton-title {
+    width: 70%;
+}
+
+.skeleton-card .skeleton-text:nth-child(2) {
+    width: 100%;
+}
+
+.skeleton-card .skeleton-text:nth-child(3) {
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.skeleton-card .skeleton-text:last-child {
+    width: 60%;
+    margin-bottom: 0;
+}
+
+/* Report card skeleton */
+.skeleton-report {
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton-report-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.skeleton-report-header .skeleton {
+    height: 1.5rem;
+    width: 40%;
+}
+
+.skeleton-report-badge {
+    height: 1.5rem;
+    width: 20%;
+    border-radius: 9999px;
+}
+
+/* 4. SMOOTH PAGE TRANSITIONS */
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pageExit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Fade transitions for sections */
+.section-transition {
+    animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-transition.exit {
+    animation: pageExit 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Staggered animations for list items */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stagger-item.active {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Smooth transitions for mobile menu */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.slide-down-enter {
+    animation: slideDown 0.3s ease-out;
+}
+
+.slide-down-exit {
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Smart snapping - smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced focus states for accessibility */
+.focus-visible {
+    outline: 2px solid #1e3a8a;
+    outline-offset: 2px;
+}
+
+.focus-visible::-webkit-outer-spin-button,
+.focus-visible::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
