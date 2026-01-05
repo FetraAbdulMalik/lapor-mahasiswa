@@ -2,6 +2,167 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   Color Palette Utilities - Modern Professional
+   Biru Tua (Navy) & Putih dengan Aksen Cyan
+   ============================================ */
+
+@layer components {
+  /* ============================================
+     Button Base Styles with Click Animation
+     Semua button akan scale-95 dan shadow berubah saat diklik (active state)
+     Ini memberikan feedback visual yang subtle namun meaningful
+     ============================================ */
+  
+  .btn-primary {
+    /* Primary button untuk aksi utama - Cyan background */
+    /* Hover: shadow lebih besar (lg) dan background lebih gelap (cyan-600) */
+    /* Active: scale-95 untuk press effect + shadow-inner untuk kedalaman */
+    @apply bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 active:shadow-inner;
+  }
+
+  .btn-secondary {
+    /* Secondary button - Navy background */
+    /* Same animation pattern: hover scale-up shadow, active scale-down */
+    @apply bg-navy-600 hover:bg-navy-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 active:shadow-inner;
+  }
+
+  .btn-outline {
+    /* Outline button untuk aksi sekunder - Navy border + text */
+    /* Active state: background menjadi navy-100 untuk visual feedback */
+    @apply border-2 border-navy-600 text-navy-600 hover:bg-navy-50 font-medium py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 active:bg-navy-100;
+  }
+
+  .btn-ghost {
+    /* Ghost button - text only, minimal styling */
+    /* Tetap memiliki active animation untuk konsistensi */
+    @apply text-navy-600 hover:bg-navy-50 font-medium py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 active:bg-navy-100;
+  }
+
+  .btn-danger {
+    /* Danger button untuk aksi berbahaya - Red/Error background */
+    /* Same animation pattern dengan color error */
+    @apply bg-error-500 hover:bg-error-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 active:shadow-inner;
+  }
+
+  .btn-success {
+    /* Success button untuk aksi berhasil - Green/Success background */
+    /* Same animation pattern dengan color success */
+    @apply bg-success-500 hover:bg-success-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 active:shadow-inner;
+  }
+
+  /* Input Field Styles */
+  .input-field {
+    @apply w-full px-4 py-2 border-2 border-navy-200 rounded-lg text-navy-900 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200;
+  }
+
+  .input-field:disabled {
+    @apply bg-navy-50 text-gray-500 cursor-not-allowed;
+  }
+
+  /* Card Styles */
+  .card-base {
+    @apply bg-white rounded-lg shadow-md border border-navy-200 overflow-hidden;
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-lg shadow-lg border border-navy-100 overflow-hidden hover:shadow-xl transition-shadow duration-200;
+  }
+
+  /* Text Hierarchy */
+  .heading-xl {
+    @apply text-4xl font-bold text-navy-900;
+  }
+
+  .heading-lg {
+    @apply text-3xl font-bold text-navy-900;
+  }
+
+  .heading-md {
+    @apply text-2xl font-bold text-navy-900;
+  }
+
+  .heading-sm {
+    @apply text-lg font-bold text-navy-900;
+  }
+
+  .heading-xs {
+    @apply text-base font-bold text-navy-900;
+  }
+
+  .text-primary {
+    @apply text-navy-900 font-medium;
+  }
+
+  .text-secondary {
+    @apply text-navy-600 font-normal;
+  }
+
+  .text-tertiary {
+    @apply text-gray-500 font-normal;
+  }
+
+  .text-muted {
+    @apply text-gray-400 font-normal;
+  }
+
+  /* Alert Styles */
+  .alert-success {
+    @apply bg-success-50 border-l-4 border-success-500 text-success-700 p-4 rounded;
+  }
+
+  .alert-warning {
+    @apply bg-warning-50 border-l-4 border-warning-500 text-warning-700 p-4 rounded;
+  }
+
+  .alert-error {
+    @apply bg-error-50 border-l-4 border-error-500 text-error-700 p-4 rounded;
+  }
+
+  .alert-info {
+    @apply bg-info-50 border-l-4 border-info-500 text-info-700 p-4 rounded;
+  }
+
+  /* Badge Styles */
+  .badge-primary {
+    @apply inline-block bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-secondary {
+    @apply inline-block bg-navy-100 text-navy-800 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-success {
+    @apply inline-block bg-success-100 text-success-800 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-warning {
+    @apply inline-block bg-warning-100 text-warning-800 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-error {
+    @apply inline-block bg-error-100 text-error-800 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  /* Link Styles */
+  .link-primary {
+    @apply text-cyan-600 hover:text-cyan-700 underline;
+  }
+
+  .link-secondary {
+    @apply text-navy-600 hover:text-navy-700 underline;
+  }
+
+  /* Table Styles */
+  .table-row-hover {
+    @apply hover:bg-navy-50 transition-colors duration-200;
+  }
+
+  .table-header {
+    @apply bg-navy-100 text-navy-900 font-bold border-b-2 border-navy-200;
+  }
+}
+
 /* Modern Button Animations */
 @keyframes shimmer {
     0% {
@@ -759,4 +920,216 @@ html {
 .focus-visible::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+/* ============================================
+   SIDEBAR ANIMATIONS - Student Dashboard
+   ============================================ */
+
+/* Sidebar entrance animation */
+@keyframes sidebarSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sidebar-enter {
+    animation: sidebarSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Sidebar nav items animation */
+@keyframes navItemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sidebar-nav-item {
+    animation: navItemFadeIn 0.5s ease-out forwards;
+}
+
+.sidebar-nav-item:nth-child(1) { animation-delay: 0.05s; }
+.sidebar-nav-item:nth-child(2) { animation-delay: 0.1s; }
+.sidebar-nav-item:nth-child(3) { animation-delay: 0.15s; }
+.sidebar-nav-item:nth-child(4) { animation-delay: 0.2s; }
+.sidebar-nav-item:nth-child(5) { animation-delay: 0.25s; }
+.sidebar-nav-item:nth-child(6) { animation-delay: 0.3s; }
+
+/* Smooth subtle hover effect for nav items */
+.nav-link {
+    position: relative;
+    transition: all 0.25s ease-out;
+}
+
+.nav-link:hover {
+    transform: translateX(2px);
+    background-color: rgba(6, 182, 212, 0.08);
+}
+
+/* Active state with gradient underline */
+@keyframes activeNavUnderline {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    background: linear-gradient(90deg, #06b6d4, transparent);
+    animation: activeNavUnderline 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Icon scale animation on hover - subtle */
+@keyframes iconScale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+.nav-link:hover svg {
+    animation: iconScale 0.25s ease-out forwards;
+}
+
+/* Logo subtle hover effect */
+.sidebar-logo:hover {
+    transform: translateY(-2px);
+    transition: transform 0.25s ease-out;
+}
+
+/* User info animation */
+@keyframes userInfoSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sidebar-user-info {
+    animation: userInfoSlideUp 0.6s ease-out 0.4s both;
+}
+
+/* Smooth scroll for nav items */
+.sidebar nav {
+    scroll-behavior: smooth;
+}
+
+/* Notification badge subtle pulse */
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+.notification-badge {
+    animation: badgePulse 0.8s ease-in-out 2;
+}
+
+.notification-badge:hover {
+    animation: badgePulse 0.6s ease-in-out infinite;
+}
+
+/* Removed overly flashy ripple effect - using simple transition instead */
+.nav-link::after {
+    display: none;
+}
+
+/* Smooth transition for active nav background */
+.nav-link {
+    position: relative;
+}
+
+.nav-link.active {
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.1), transparent);
+}
+
+/* ============================================
+   Dropdown Chevron Rotation Animation
+   Chevron icon rotate 180 derajat saat dropdown dibuka
+   Menggunakan cubic-bezier untuk smooth, bouncy effect
+   ============================================ */
+@keyframes chevronRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+.sidebar-chevron {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sidebar-chevron.rotated {
+    animation: chevronRotate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ============================================
+   Bubble Ripple Animation (iPhone-style)
+   Membuat efek bubble ripple seperti iPhone saat memilih kategori
+   - Dimulai dari ukuran 0px dengan opacity 0.4
+   - Expand menjadi 300px dengan opacity menurun ke 0
+   - Cubic-bezier memberikan natural easing effect
+   ============================================ */
+@keyframes bubbleRipple {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0.4;
+    }
+    to {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.bubble-ripple {
+    animation: bubbleRipple 0.6s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+/* Icon Pop Animation */
+@keyframes iconPop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+.icon-pop {
+    animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }

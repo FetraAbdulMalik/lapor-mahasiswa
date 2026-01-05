@@ -7,6 +7,16 @@ use App\Models\Department;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 
+# ============================================================================
+# DepartmentController - Academic Department Management
+# ============================================================================
+# Manages academic departments within faculties
+# 
+# Purpose: Create/manage departments under faculties with leadership info
+# Features: CRUD, faculty association, active/inactive, student tracking
+# Use: Organize academic structure, track student demographics
+#
+
 class DepartmentController extends Controller
 {
     public function index()

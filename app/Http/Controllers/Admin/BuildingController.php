@@ -6,6 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Building;
 use Illuminate\Http\Request;
 
+# ============================================================================
+# BuildingController - Campus Building Management
+# ============================================================================
+# Manages university buildings and their facilities
+# 
+# Purpose: Create/manage campus buildings, track facilities within each
+# Features: CRUD, facility counting, statistics dashboard, constraint checks
+# Use: Organize facilities by physical building locations on campus
+#
+
 class BuildingController extends Controller
 {
     public function index()

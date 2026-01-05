@@ -6,6 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 
+# ============================================================================
+# FacultyController - University Faculty Management
+# ============================================================================
+# Manages university faculties (colleges)
+# 
+# Purpose: Create/manage faculties with leadership and department tracking
+# Features: CRUD, department management, dean info, active/inactive
+# Use: Top-level academic structure organization
+#
+
 class FacultyController extends Controller
 {
     public function index()

@@ -7,6 +7,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+# ============================================================================
+# UserController - User Account Management (All Roles)
+# ============================================================================
+# Manages user accounts for all roles: super_admin, admin, student
+# 
+# Purpose: Create/manage all user accounts with role assignment
+# Features: CRUD, role management (super_admin/admin/student), password control
+# Use: System user management, admin account creation, account deactivation
+#
+
 class UserController extends Controller
 {
     public function index()

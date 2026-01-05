@@ -6,6 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\ReportCategory;
 use Illuminate\Http\Request;
 
+# ============================================================================
+# CategoryController - Report Category Management
+# ============================================================================
+# Manages report categories (issue types) used for classification
+# 
+# Purpose: Create/manage issue type categories with colors and icons
+# Features: CRUD, active/inactive toggle, report counting, dependency checks
+# Use: Students select category when submitting reports for classification
+#
+
 class CategoryController extends Controller
 {
     public function index()

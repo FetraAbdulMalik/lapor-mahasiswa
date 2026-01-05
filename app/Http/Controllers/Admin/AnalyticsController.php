@@ -9,6 +9,16 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+# ============================================================================
+# AnalyticsController - Report Analytics & Insights
+# ============================================================================
+# Provides analytics and reporting views for admin dashboards
+# 
+# Purpose: Display analytics on reports by category, department, trends
+# Features: Overview dashboard, category analysis, department analysis, trends
+# Use: Leadership reports, identifying bottlenecks, resource planning
+#
+
 class AnalyticsController extends Controller
 {
     public function index()

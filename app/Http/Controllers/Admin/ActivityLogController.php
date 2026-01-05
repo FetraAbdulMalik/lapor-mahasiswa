@@ -6,6 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ActivityLogFilterRequest;
 use App\Models\ActivityLog;
 
+# ============================================================================
+# ActivityLogController - System Activity & Audit Trail
+# ============================================================================
+# Displays system activity logs for auditing and monitoring
+# 
+# Purpose: View/audit all system actions, track user behavior, compliance
+# Features: Filter by user/action/date, distinct action types, pagination
+# Use: Audit trail, compliance, debugging, security investigation
+#
+
 class ActivityLogController extends Controller
 {
     public function index(ActivityLogFilterRequest $request)

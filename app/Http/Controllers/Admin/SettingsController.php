@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 
+# ============================================================================
+# SettingsController - Application Configuration & System Management
+# ============================================================================
+# Manages system settings, database backups, cache/log clearing
+# 
+# Purpose: System configuration, maintenance operations, data backup/cleanup
+# Features: Email/app settings, database backup, cache clear, log clear
+# Use: System administration, maintenance, configuration updates
+#
+
 class SettingsController extends Controller
 {
     public function index()

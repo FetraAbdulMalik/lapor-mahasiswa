@@ -1,12 +1,17 @@
 @extends('layouts.app', ['title' => 'Buat Laporan Baru'])
 
 @section('content')
+{{-- # CONTAINER UTAMA - Max width 4xl dengan auto margin untuk center --}}
 <div class="max-w-4xl mx-auto">
-    <!-- Progress Steps -->
+    {{-- # PROGRESS INDICATOR - Menampilkan 3 tahapan pembuatan laporan --}}
+    {{-- # Tahap 1: Pilih Kategori (Active) --}}
+    {{-- # Tahap 2: Detail Laporan (Inactive) --}}
+    {{-- # Tahap 3: Upload Bukti (Inactive) --}}
     <div class="bg-white rounded-lg shadow-md p-6 mb-6">
         <div class="flex items-center justify-between" x-data="{ step: 1 }">
             <div class="flex-1">
                 <div class="flex items-center">
+                    {{-- # STEP 1: PILIH KATEGORI (Status: Active = Navy) --}}
                     <div class="flex items-center text-navy-800 relative">
                         <div class="rounded-full h-12 w-12 flex items-center justify-center bg-navy-800 text-white font-bold">
                             1
@@ -15,7 +20,9 @@
                             <div class="text-sm font-semibold">Pilih Kategori</div>
                         </div>
                     </div>
+                    {{-- # CONNECTOR LINE ANTARA STEP 1 & 2 --}}
                     <div class="flex-auto border-t-2 border-gray-300 mx-4"></div>
+                    {{-- # STEP 2: DETAIL LAPORAN (Status: Inactive = Gray) --}}
                     <div class="flex items-center text-gray-400 relative">
                         <div class="rounded-full h-12 w-12 flex items-center justify-center bg-gray-300 text-white font-bold">
                             2
@@ -24,7 +31,9 @@
                             <div class="text-sm font-semibold">Detail Laporan</div>
                         </div>
                     </div>
+                    {{-- # CONNECTOR LINE ANTARA STEP 2 & 3 --}}
                     <div class="flex-auto border-t-2 border-gray-300 mx-4"></div>
+                    {{-- # STEP 3: UPLOAD BUKTI (Status: Inactive = Gray) --}}
                     <div class="flex items-center text-gray-400 relative">
                         <div class="rounded-full h-12 w-12 flex items-center justify-center bg-gray-300 text-white font-bold">
                             3
@@ -38,45 +47,77 @@
         </div>
     </div>
     
-    <!-- Form -->
+    {{-- # FORM UTAMA - POST ke route student.reports.store --}}
+    {{-- # enctype="multipart/form-data" untuk support upload file --}}
+    {{-- # x-data="reportForm()" untuk Alpine.js state management --}}
+    {{-- # @submit event untuk disable button saat submit --}}
     <form method="POST" action="{{ route('student.reports.store') }}" enctype="multipart/form-data" 
           x-data="reportForm()" @submit="isSubmitting = true">
+        {{-- # CSRF Token untuk security Laravel --}}
         @csrf
         
+        {{-- # MAIN FORM CONTAINER --}}
         <div class="bg-white rounded-lg shadow-md p-8">
             
-            <!-- Step 1: Category Selection -->
+            {{-- # =====================================================
+                 STEP 1: PILIH KATEGORI LAPORAN
+                 ===================================================== --}}
+            {{-- # User harus memilih kategori sesuai dengan masalahnya --}}
             <div class="mb-8">
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Pilih Kategori Laporan</h3>
                 <p class="text-gray-600 mb-6">Pilih kategori yang sesuai dengan masalah Anda</p>
                 
+                {{-- # GRID KATEGORI - 3 kolom di desktop, 2 di tablet, 1 di mobile --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {{-- # LOOP SETIAP KATEGORI DARI DATABASE --}}
                     @foreach($categories as $category)
+                    {{-- # LABEL CONTAINER - Cursor pointer karena clickable --}}
                     <label class="relative cursor-pointer">
+                        {{-- # RADIO INPUT KATEGORI - hidden (sr-only) tapi tetap functional --}}
+                        {{-- # peer class untuk CSS styling berdasarkan checked state --}}
+                        {{-- # old('category_id') untuk retain selection jika ada error --}}
                         <input type="radio" name="category_id" value="{{ $category->id }}" 
                                class="peer sr-only" required
                                {{ old('category_id') == $category->id ? 'checked' : '' }}>
+                        {{-- # CARD KATEGORI - Styling berubah saat radio checked --}}
+                        {{-- # border-2 = 2px border default gray-200 --}}
+                        {{-- # hover:border-accent-300 = border cyan saat hover --}}
+                        {{-- # peer-checked:border-navy-800 = border navy saat radio checked --}}
+                        {{-- # peer-checked:bg-blue-50 = background light blue saat radio checked --}}
                         <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-accent-300 peer-checked:border-navy-800 peer-checked:bg-blue-50 transition">
+                            {{-- # ICON EMOJI KATEGORI - Dari database --}}
                             <div class="text-3xl mb-2">{{ $category->icon }}</div>
+                            {{-- # NAMA KATEGORI --}}
                             <div class="font-bold text-gray-900 mb-1">{{ $category->name }}</div>
+                            {{-- # DESKRIPSI KATEGORI - Limit 60 karakter untuk brevity --}}
                             <div class="text-sm text-gray-600">{{ Str::limit($category->description, 60) }}</div>
                         </div>
                     </label>
                     @endforeach
                 </div>
+                {{-- # ERROR MESSAGE - Tampil jika kategori belum dipilih saat submit --}}
                 @error('category_id')
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
             
+            {{-- # HORIZONTAL LINE SEPARATOR antara step 1 dan step 2 --}}
             <hr class="my-8">
             
-            <!-- Step 2: Report Details -->
+            {{-- # =====================================================
+                 STEP 2: DETAIL LAPORAN
+                 ===================================================== --}}
+            {{-- # User mengisi judul, deskripsi, lokasi detail laporan --}}
             <div class="mb-8">
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Detail Laporan</h3>
                 <p class="text-gray-600 mb-6">Jelaskan masalah Anda secara detail dan jelas</p>
                 
                 <div class="space-y-6">
+                    {{-- # INPUT: JUDUL LAPORAN (required field) --}}
+                    {{-- # maxlength="255" = maksimal input 255 karakter --}}
+                    {{-- # input-field = custom CSS class untuk styling --}}
+                    {{-- # @error directive menampilkan error validation message --}}
+                    {{-- # old('title') retain value jika ada validation error --}}
                     <!-- Title -->
                     <div>
                         <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
@@ -87,11 +128,16 @@
                                placeholder="Contoh: AC Rusak di Lab Komputer 1"
                                value="{{ old('title') }}">
                         <p class="mt-1 text-sm text-gray-500">Buat judul yang singkat dan jelas</p>
+                        {{-- # TAMPILKAN ERROR MESSAGE JIKA ADA VALIDATION ERROR --}}
                         @error('title')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                     
+                    {{-- # INPUT: DESKRIPSI LAPORAN (required field) --}}
+                    {{-- # textarea dengan 6 baris (rows="6") untuk user menulis deskripsi panjang --}}
+                    {{-- # Placeholder memberikan panduan apa yang harus dijelaskan --}}
+                    {{-- # Minimal 50 karakter enforced dari backend validation --}}
                     <!-- Description -->
                     <div>
                         <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
@@ -101,13 +147,18 @@
                                   class="input-field @error('description') border-red-500 @enderror"
                                   placeholder="Jelaskan masalah secara detail:  apa yang terjadi, sejak kapan, dampaknya, dll.  (Minimal 50 karakter)">{{ old('description') }}</textarea>
                         <p class="mt-1 text-sm text-gray-500">Minimal 50 karakter.  Semakin detail semakin baik. </p>
+                        {{-- # TAMPILKAN ERROR JIKA DESKRIPSI TIDAK MEMENUHI VALIDASI --}}
                         @error('description')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                     
+                    {{-- # LOCATION SELECTION: GEDUNG DAN FASILITAS --}}
+                    {{-- # 2 kolom grid: Gedung di kiri, Fasilitas di kanan --}}
+                    {{-- # Fasilitas dependent pada Gedung yang dipilih via AJAX --}}
                     <!-- Location -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {{-- # SELECT GEDUNG - Saat berubah, trigger loadFacilities() AJAX call --}}
                         <div>
                             <label for="building_id" class="block text-sm font-medium text-gray-700 mb-2">
                                 Gedung
@@ -116,17 +167,22 @@
                                     class="input-field @error('building_id') border-red-500 @enderror"
                                     @change="loadFacilities($event.target.value)">
                                 <option value="">Pilih Gedung</option>
+                                {{-- # LOOP SEMUA GEDUNG DARI DATABASE --}}
                                 @foreach($buildings as $building)
                                     <option value="{{ $building->id }}" {{ old('building_id') == $building->id ? 'selected' : '' }}>
                                         {{ $building->name }}
                                     </option>
                                 @endforeach
                             </select>
+                            {{-- # TAMPILKAN ERROR VALIDASI GEDUNG --}}
                             @error('building_id')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
                         
+                        {{-- # SELECT FASILITAS - Diisi via AJAX setelah Gedung dipilih --}}
+                        {{-- # facilities Alpine component state berisi list fasilitas dari AJAX --}}
+                        {{-- # x-model="selectedFacility" binds selected value ke Alpine state --}}
                         <div>
                             <label for="facility_id" class="block text-sm font-medium text-gray-700 mb-2">
                                 Ruangan/Fasilitas
@@ -135,12 +191,15 @@
                                     class="input-field @error('facility_id') border-red-500 @enderror">
                                 <option value="">Pilih Ruangan (Optional)</option>
                             </select>
+                            {{-- # TAMPILKAN ERROR VALIDASI FASILITAS --}}
                             @error('facility_id')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                     
+                    {{-- # LOKASI TAMBAHAN TEXT INPUT - Free text untuk detail lokasi spesifik --}}
+                    {{-- # Optional field untuk memberikan deskripsi lokasi yang lebih detail --}}
                     <div>
                         <label for="location" class="block text-sm font-medium text-gray-700 mb-2">
                             Deskripsi Lokasi Tambahan
@@ -149,13 +208,19 @@
                                class="input-field @error('location') border-red-500 @enderror"
                                placeholder="Contoh:  Dekat pintu masuk, lantai 2, sebelah kiri"
                                value="{{ old('location') }}">
+                        {{-- # TAMPILKAN ERROR JIKA ADA VALIDASI GAGAL --}}
                         @error('location')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                     
+                    {{-- # INCIDENT DATE & PRIORITY - Grid 2 kolom --}}
+                    {{-- # Tanggal kejadian dan tingkat urgensi laporan --}}
                     <!-- Incident Date & Priority -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {{-- # INPUT: TANGGAL KEJADIAN --}}
+                        {{-- # max="{{ date('Y-m-d') }}" prevents future dates --}}
+                        {{-- # default value = hari ini jika tidak diisi --}}
                         <div>
                             <label for="incident_date" class="block text-sm font-medium text-gray-700 mb-2">
                                 Tanggal Kejadian
@@ -164,11 +229,15 @@
                                    class="input-field @error('incident_date') border-red-500 @enderror"
                                    max="{{ date('Y-m-d') }}"
                                    value="{{ old('incident_date', date('Y-m-d')) }}">
+                            {{-- # TAMPILKAN ERROR VALIDASI TANGGAL --}}
                             @error('incident_date')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
                         
+                        {{-- # SELECT: TINGKAT URGENSI/PRIORITAS --}}
+                        {{-- # Opsi: Rendah, Sedang (default), Tinggi, Mendesak --}}
+                        {{-- # Admin menggunakan priority untuk scheduling tindak lanjut --}}
                         <div>
                             <label for="priority" class="block text-sm font-medium text-gray-700 mb-2">
                                 Tingkat Urgensi *
@@ -180,18 +249,24 @@
                                 <option value="high" {{ old('priority') == 'high' ? 'selected' : '' }}>Tinggi - Mengganggu</option>
                                 <option value="urgent" {{ old('priority') == 'urgent' ? 'selected' : '' }}>Mendesak - Sangat Penting</option>
                             </select>
+                            {{-- # TAMPILKAN ERROR VALIDASI PRIORITY --}}
                             @error('priority')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                     
+                    {{-- # VISIBILITY/VISIBILITY SETTING --}}
+                    {{-- # User memilih apakah laporan publik atau anonim --}}
+                    {{-- # Publik = Nama terlihat, Anonim = Identitas disembunyikan dari publik --}}
                     <!-- Visibility -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             Lapor Sebagai *
                         </label>
+                        {{-- # RADIO BUTTONS untuk opsi public vs anonim --}}
                         <div class="space-y-3">
+                            {{-- # OPTION 1: PUBLIC - Nama terlihat, laporan terbuka publik --}}
                             <label class="flex items-start cursor-pointer">
                                 <input type="radio" name="visibility" value="public" 
                                        {{ old('visibility', 'public') == 'public' ? 'checked' : '' }}
@@ -201,6 +276,7 @@
                                     <p class="text-sm text-gray-600">Nama Anda akan terlihat, laporan bisa dilihat siapa saja</p>
                                 </div>
                             </label>
+                            {{-- # OPTION 2: ANONYMOUS - Identitas disembunyikan dari publik --}}
                             <label class="flex items-start cursor-pointer">
                                 <input type="radio" name="visibility" value="anonymous"
                                        {{ old('visibility') == 'anonymous' ? 'checked' : '' }}
@@ -210,6 +286,7 @@
                                     <p class="text-sm text-gray-600">Identitas Anda disembunyikan, hanya admin yang tahu</p>
                                 </div>
                             </label>
+                            {{-- # OPTION 3: PRIVATE - Hanya user dan admin yang bisa melihat --}}
                             <label class="flex items-start cursor-pointer">
                                 <input type="radio" name="visibility" value="private"
                                        {{ old('visibility') == 'private' ? 'checked' : '' }}
@@ -220,6 +297,7 @@
                                 </div>
                             </label>
                         </div>
+                        {{-- # TAMPILKAN ERROR VALIDASI VISIBILITY --}}
                         @error('visibility')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -227,35 +305,53 @@
                 </div>
             </div>
             
+            {{-- # HORIZONTAL SEPARATOR ANTARA STEP 2 DAN STEP 3 --}}
             <hr class="my-8">
             
+            {{-- # =====================================================
+                 STEP 3: UPLOAD BUKTI PENDUKUNG (OPTIONAL)
+                 ===================================================== --}}
+            {{-- # User bisa upload foto/dokumen untuk mendukung laporan --}}
             <!-- Step 3: Attachments -->
             <div class="mb-8">
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Upload Bukti (Opsional)</h3>
                 <p class="text-gray-600 mb-6">Upload foto atau dokumen pendukung laporan Anda</p>
                 
+                {{-- # FILE UPLOAD AREA - Dashed border + drag & drop support --}}
                 <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                    {{-- # UPLOAD ICON - SVG dengan styling gray-400 --}}
                     <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                     </svg>
+                    {{-- # FILE INPUT HIDDEN - Triggered via label click atau drag & drop --}}
+                    {{-- # multiple = allow multiple file selection --}}
+                    {{-- # accept="image/*,.pdf,.doc,.docx" = allowed file types --}}
+                    {{-- # onchange="previewFiles(this)" = trigger JavaScript preview saat file selected --}}
                     <label for="attachments" class="cursor-pointer">
                         <span class="text-navy-800 font-semibold">Upload file</span>
                         <span class="text-gray-600"> atau drag & drop</span>
                     </label>
                     <input type="file" id="attachments" name="attachments[]" multiple accept="image/*,. pdf,.doc,.docx"
                            class="hidden" onchange="previewFiles(this)">
+                    {{-- # FILE TYPE INFO - Supported formats dan size limits --}}
                     <p class="text-sm text-gray-500 mt-2">JPG, PNG, PDF, DOC (Max 5 file, 5MB per file)</p>
                 </div>
                 
+                {{-- # PREVIEW CONTAINER - Dinamis menampilkan thumbnail files yang dipilih --}}
+                {{-- # Grid 2 kolom mobile, 4 kolom desktop --}}
                 <div id="preview-container" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
                 
+                {{-- # ERROR MESSAGE UNTUK FILE VALIDATION ERRORS --}}
                 @error('attachments.*')
                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
             
+            {{-- # TERMS & CONDITIONS CHECKBOX --}}
+            {{-- # User harus accept terms sebelum submit (required) --}}
             <!-- Terms -->
             <div class="mb-6">
+                {{-- # CHECKBOX WITH LABEL - Lebih besar, lebih user-friendly --}}
                 <label class="flex items-start cursor-pointer">
                     <input type="checkbox" name="terms" required class="mt-1 h-4 w-4 text-navy-800">
                     <span class="ml-3 text-sm text-gray-700">
@@ -265,14 +361,24 @@
                 </label>
             </div>
             
+            {{-- # SUBMIT BUTTONS SECTION --}}
+            {{-- # Batal button kembali ke list laporan --}}
+            {{-- # Submit button kirim laporan dengan loading state --}}
             <!-- Submit Buttons -->
             <div class="flex items-center justify-between pt-6 border-t">
+                {{-- # CANCEL BUTTON - Link kembali ke laporan list (btn-secondary) --}}
                 <a href="{{ route('student.reports.index') }}" class="btn-secondary">
                     Batal
                 </a>
+                {{-- # SUBMIT BUTTON - x-bind:disabled menunggu form process --}}
+                {{-- # isSubmitting Alpine state mengontrol button disabled state --}}
+                {{-- # Menampilkan loading spinner saat form sedang disubmit --}}
                 <button type="submit" class="btn-primary" x-bind:disabled="isSubmitting">
+                    {{-- # NORMAL TEXT - Tampil saat tidak submitting --}}
                     <span x-show="! isSubmitting">Kirim Laporan</span>
+                    {{-- # LOADING STATE - Tampil saat sedang submit dengan spinner icon --}}
                     <span x-show="isSubmitting" class="flex items-center">
+                        {{-- # SPINNER SVG ICON - Animated circle untuk loading visual --}}
                         <svg class="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -287,27 +393,46 @@
 
 @push('scripts')
 <script>
+{{-- # =====================================================
+     ALPINE.JS FORM STATE - reportForm()
+     ===================================================== --}}
+{{-- # Initialize Alpine.js component state untuk form management --}}
+{{-- # isSubmitting: boolean flag untuk prevent double submit dan tampilkan loading state --}}
 function reportForm() {
     return {
         isSubmitting: false
     }
 }
 
+{{-- # =====================================================
+     AJAX: LOAD FACILITIES BY BUILDING
+     ===================================================== --}}
+{{-- # Dipanggil saat user memilih gedung (via @change event) --}}
+{{-- # Fetch facilities dari API berdasarkan building_id --}}
+{{-- # Populate facility select dropdown dengan hasil dari server --}}
 // Load facilities based on building
 async function loadFacilities(buildingId) {
+    {{-- # GET REFERENCE ke facility select element --}}
     const facilitySelect = document.getElementById('facility_id');
+    {{-- # SET loading state placeholder --}}
     facilitySelect.innerHTML = '<option value="">Loading... </option>';
     
+    {{-- # EARLY RETURN jika buildingId kosong (user belum pilih gedung) --}}
     if (!buildingId) {
         facilitySelect.innerHTML = '<option value="">Pilih Gedung dulu</option>';
         return;
     }
     
+    {{-- # TRY FETCH ke /api/facilities/{buildingId} --}}
+    {{-- # Server return JSON array of facilities untuk building tersebut --}}
     try {
         const response = await fetch(`/api/facilities/${buildingId}`);
         const facilities = await response.json();
         
+        {{-- # CLEAR dropdown dan set default option --}}
         facilitySelect.innerHTML = '<option value="">Pilih Ruangan (Optional)</option>';
+        {{-- # LOOP setiap facility dan create option element --}}
+        {{-- # Display: Nama Fasilitas (Kode) - Lantai X --}}
         facilities.forEach(facility => {
             const option = document.createElement('option');
             option.value = facility.id;
@@ -315,31 +440,51 @@ async function loadFacilities(buildingId) {
             facilitySelect.appendChild(option);
         });
     } catch (error) {
+        {{-- # ERROR HANDLING - jika fetch gagal --}}
         facilitySelect.innerHTML = '<option value="">Error loading facilities</option>';
     }
 }
 
+{{-- # =====================================================
+     FILE PREVIEW - previewFiles()
+     ===================================================== --}}
+{{-- # Dipanggil saat user select file (via onchange event) --}}
+{{-- # Display thumbnail preview dari uploaded files --}}
+{{-- # Support images dan documents --}}
 // Preview uploaded files
 function previewFiles(input) {
+    {{-- # GET REFERENCE ke preview container --}}
     const container = document.getElementById('preview-container');
+    {{-- # CLEAR container dari file preview lama --}}
     container.innerHTML = '';
     
+    {{-- # CEK jika ada files yang dipilih --}}
     if (input.files) {
+        {{-- # LOOP setiap file yang dipilih --}}
         Array.from(input.files).forEach((file, index) => {
+            {{-- # CREATE FileReader untuk read file content --}}
             const reader = new FileReader();
             
+            {{-- # ON LOAD event handler saat file selesai dibaca --}}
             reader.onload = function(e) {
+                {{-- # CREATE div element untuk file preview card --}}
                 const div = document.createElement('div');
                 div.className = 'relative border rounded-lg p-2';
                 
+                {{-- # CEK TYPE FILE - image atau document --}}
+                {{-- # IMAGE: display thumbnail preview dari DataURL --}}
+                {{-- # DOCUMENT: display generic document icon --}}
                 if (file.type.startsWith('image/')) {
+                    {{-- # IMAGE PREVIEW - Show thumbnail dari file --}}
                     div.innerHTML = `
                         <img src="${e.target.result}" class="w-full h-24 object-cover rounded">
                         <p class="text-xs text-gray-600 mt-1 truncate">${file.name}</p>
                     `;
                 } else {
+                    {{-- # DOCUMENT PREVIEW - Show generic file icon untuk non-image files --}}
                     div.innerHTML = `
                         <div class="w-full h-24 bg-gray-100 rounded flex items-center justify-center">
+                            {{-- # DOCUMENT ICON SVG --}}
                             <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                             </svg>
@@ -348,9 +493,11 @@ function previewFiles(input) {
                     `;
                 }
                 
+                {{-- # APPEND preview card ke container --}}
                 container.appendChild(div);
             };
             
+            {{-- # READ file sebagai DataURL (base64 encoded) untuk preview --}}
             reader.readAsDataURL(file);
         });
     }

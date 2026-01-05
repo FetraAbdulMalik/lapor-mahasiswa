@@ -11,6 +11,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
+# ============================================================================
+# StudentController - Student User Management
+# ============================================================================
+# Manages student accounts and academic profiles
+# 
+# Purpose: Create/manage student accounts with academic details (NIM, faculty, dept)
+# Features: CRUD, search (name/email/NIM), department filtering, status management
+# Use: Admin creates students, edits academic info, deactivates accounts
+#
+
 class StudentController extends Controller
 {
     /**

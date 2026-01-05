@@ -15,6 +15,45 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+# ============================================================================
+# ReportController - Admin Report Management System
+# ============================================================================
+# Comprehensive admin controller for managing all student reports
+# 
+# Purpose:
+# - Display and filter reports submitted by students
+# - Show detailed report information with comments and history
+# - Update report status and manage resolution
+# - Assign reports to specific admins
+# - Add official admin comments (visible/internal)
+# - Perform bulk actions (assign, status change, delete)
+# - Export reports to Excel and PDF formats
+# 
+# Key Features:
+# - Advanced filtering: status, category, priority, date range, search
+# - Eager loading: Prevent N+1 queries with relationship loading
+# - Status history tracking: Maintain audit trail of status changes
+# - Notification system: Notify students and admins of changes
+# - Bulk operations: Efficiently handle multiple reports
+# - Export functionality: Excel (.xlsx) and PDF formats
+# - Transaction management: Ensure data consistency
+# 
+# Report Statuses:
+# - pending: Initial state, awaiting review
+# - in_review: Being reviewed by assigned admin
+# - in_progress: Issue being addressed
+# - resolved: Issue resolved, waiting for student confirmation
+# - rejected: Report rejected or invalid
+# 
+# Admin Workflow:
+# 1. View reports list with filters
+# 2. Select report to view details
+# 3. Assign to specific admin or team
+# 4. Change status as progress updates
+# 5. Add comments (visible to student or internal only)
+# 6. Mark as resolved with notes
+# 7. Bulk export for meetings/reporting
+#
 class ReportController extends Controller
 {
     /**
@@ -25,6 +64,81 @@ class ReportController extends Controller
      * @property string|null $date_from
      * @property string|null $date_to
      * @property string|null $search
+     # 
+     # Workflow:
+     # 1. BUILD BASE QUERY
+     #    - Report::with() eager loads relationships
+     #    - Load: user (report submitter), studentProfile, category, building, assignedTo admin
+     #    - Prevent N+1: All relationships in single query
+     # 
+     # 2. FILTER BY STATUS
+     #    - if ($request->filled('status')): Check if status filter provided
+     #    - filled(): Returns true if parameter exists and not empty
+     #    - where('status', value): Filter reports by status
+     #    - Multiple filters can be chained
+     # 
+     # 3. FILTER BY CATEGORY
+     #    - if ($request->filled('category')): Check if category filter provided
+     #    - where('category_id', value): Match category ID
+     #    - Shows reports of specific issue type
+     # 
+     # 4. FILTER BY PRIORITY
+     #    - if ($request->filled('priority')): Check if priority filter provided
+     #    - where('priority', value): Filter by importance level
+     #    - Shows high-priority reports first
+     # 
+     # 5. FILTER BY DATE RANGE
+     #    - if ($request->filled('date_from')): Check from date provided
+     #    - whereDate('created_at', '>=', date): Reports on or after date
+     #    - if ($request->filled('date_to')): Check to date provided
+     #    - whereDate('created_at', '<=', date): Reports on or before date
+     #    - Allows range queries (e.g., "Reports from Jan 1 to Jan 31")
+     # 
+     # 6. SEARCH FUNCTIONALITY
+     #    - if ($request->filled('search')): Check if search term provided
+     #    - where(function($q)): Nested WHERE with OR conditions
+     #    - Search three fields:
+     #      - title: Report title/subject
+     #      - reference_number: Report ID number
+     #      - user.name via whereHas: Student who submitted
+     #    - 'like' '%term%': Wildcard search in string
+     #    - Any field match returns result
+     # 
+     # 7. PAGINATION & SORTING
+     #    - latest(): Orders by created_at descending (newest first)
+     #    - paginate(15): Show 15 reports per page with links
+     #    - Efficient for large datasets
+     # 
+     # 8. LOAD CATEGORIES FOR FILTER DROPDOWN
+     #    - ReportCategory::active(): Only non-deleted categories
+     #    - get(): Fetch all active categories for dropdown
+     #    - Used in filter form
+     # 
+     # 9. RETURN VIEW
+     #    - compact('reports', 'categories'): Pass data to view
+     #    - View: admin.reports.index
+     #    - Shows: filterable table of reports with quick actions
+     # 
+     # Performance Optimization:
+     # - Eager loading with(): Loads all related data in 4 queries max
+     # - Query builder: Uses DB indexes for filtering
+     # - Pagination: Limits results per page
+     # - Latest scope: Database-level sorting
+     # 
+     # Available Filters:
+     # - status: pending, in_review, in_progress, resolved, rejected
+     # - category: By category ID
+     # - priority: high, medium, low
+     # - date_from: Start date (format: YYYY-MM-DD)
+     # - date_to: End date (format: YYYY-MM-DD)
+     # - search: Search in title, reference_number, student name
+     # 
+     # URL Examples:
+     # - ?status=pending: Show pending reports
+     # - ?search=bathroom: Show reports containing "bathroom"
+     # - ?date_from=2025-01-01&date_to=2025-01-31: Show January reports
+     # - ?priority=high: Show high-priority only
+     # - Filters can be combined: ?status=pending&category=5&priority=high
      */
     public function index(Request $request)
     {

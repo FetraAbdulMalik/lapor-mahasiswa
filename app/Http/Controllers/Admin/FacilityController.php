@@ -7,6 +7,16 @@ use App\Models\Facility;
 use App\Models\Building;
 use Illuminate\Http\Request;
 
+# ============================================================================
+# FacilityController - Facility (Room/Space) Management
+# ============================================================================
+# Manages individual facilities/spaces within buildings
+# 
+# Purpose: Create/manage specific rooms, labs, classrooms in buildings
+# Features: CRUD, building association, type tracking, capacity management
+# Use: Track specific facilities where issues are reported (which lab, room)
+#
+
 class FacilityController extends Controller
 {
     public function index()
