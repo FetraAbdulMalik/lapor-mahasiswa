@@ -17,7 +17,7 @@
                 <p class="text-gray-600">{{ $profile->user->email }}</p>
             </div>
             <a href="{{ route('student.profile.edit') }}"
-               class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+               class="px-4 py-2 bg-navy-800 text-white rounded-lg hover:bg-navy-700 transition">
                 Edit Profil
             </a>
         </div>
@@ -139,7 +139,7 @@
         <!-- Action Buttons -->
         <div class="border-t pt-6 mt-6 flex gap-3">
             <a href="{{ route('student.profile.edit') }}"
-               class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+               class="px-6 py-2 bg-navy-800 text-white rounded-lg hover:bg-navy-700 transition">
                 Edit Profil
             </a>
             <a href="{{ route('student.dashboard') }}"
@@ -153,7 +153,7 @@
     <div class="bg-white rounded-lg shadow-md p-8 text-center max-w-3xl">
         <p class="text-gray-600 mb-4">Profil Anda belum dibuat.</p>
         <a href="{{ route('student.profile.create') }}"
-           class="inline-block px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+           class="inline-block px-6 py-2 bg-navy-800 text-white rounded-lg hover:bg-navy-700 transition">
             Buat Profil
         </a>
     </div>

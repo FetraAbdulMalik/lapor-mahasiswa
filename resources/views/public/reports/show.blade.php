@@ -3,9 +3,9 @@
 @section('title', $report->title)
 
 @section('content')
-<div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-8">
+<div class="bg-gradient-to-r from-navy-800 to-navy-700 text-white py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a href="{{ route('reports.public') }}" class="inline-flex items-center text-primary-100 hover:text-white mb-4">
+        <a href="{{ route('reports.public') }}" class="inline-flex items-center text-blue-100 hover:text-white mb-4">
             <i class="fas fa-arrow-left mr-2"></i>Kembali ke Laporan Publik
         </a>
         <h1 class="text-3xl font-bold">Detail Laporan</h1>
@@ -43,7 +43,7 @@
 
                 <!-- Title & Category -->
                 <div class="mb-6">
-                    <span class="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-primary-100 text-primary-800 mb-3">
+                    <span class="inline-flex items-center px-3 py-1 rounded text-sm font-medium bg-blue-100 text-primary-800 mb-3">
                         <i class="{{ $report->category->icon ?? 'fas fa-folder' }} mr-2"></i>
                         {{ $report->category->name }}
                     </span>
@@ -99,11 +99,11 @@
                     </h3>
                     <div class="space-y-4">
                         @foreach($report->comments as $comment)
-                            <div class="border-l-4 border-primary-500 pl-4 py-2">
+                            <div class="border-l-4 border-blue-500 pl-4 py-2">
                                 <div class="flex items-center justify-between mb-2">
                                     <div class="flex items-center">
-                                        <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
-                                            <i class="fas fa-user text-primary-600"></i>
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-user text-navy-800"></i>
                                         </div>
                                         <div>
                                             <div class="font-medium text-gray-900">{{ $comment->user->name }}</div>
@@ -178,12 +178,12 @@
                             <a href="{{ route('reports.public.show', $related->id) }}" class="block group">
                                 <div class="flex items-start">
                                     <div class="flex-1">
-                                        <h4 class="font-medium text-gray-900 group-hover:text-primary-600 line-clamp-2">
+                                        <h4 class="font-medium text-gray-900 group-hover:text-navy-800 line-clamp-2">
                                             {{ $related->title }}
                                         </h4>
                                         <p class="text-sm text-gray-500 mt-1">{{ $related->created_at->diffForHumans() }}</p>
                                     </div>
-                                    <i class="fas fa-chevron-right text-gray-400 group-hover:text-primary-600 ml-2"></i>
+                                    <i class="fas fa-chevron-right text-gray-400 group-hover:text-navy-800 ml-2"></i>
                                 </div>
                             </a>
                         @endforeach

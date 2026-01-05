@@ -3,10 +3,10 @@
 @section('title', 'Laporan Publik')
 
 @section('content')
-<div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-12">
+<div class="bg-gradient-to-r from-navy-800 to-navy-700 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-4xl font-bold mb-2">Laporan Publik</h1>
-        <p class="text-xl text-primary-100">Lihat semua laporan yang dibagikan kepada publik</p>
+        <p class="text-xl text-blue-100">Lihat semua laporan yang dibagikan kepada publik</p>
     </div>
 </div>
 
@@ -19,13 +19,13 @@
                 <label class="block text-sm font-medium text-gray-700 mb-2">Cari Laporan</label>
                 <input type="text" name="search" value="{{ request('search') }}" 
                        placeholder="Cari judul laporan..." 
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
 
             <!-- Category Filter -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
-                <select name="category" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <select name="category" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     <option value="">Semua Kategori</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
@@ -38,7 +38,7 @@
             <!-- Status Filter -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                <select name="status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <select name="status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     <option value="">Semua Status</option>
                     <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Menunggu</option>
                     <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>Diproses</option>
@@ -49,7 +49,7 @@
 
             <!-- Submit Button -->
             <div class="flex items-end">
-                <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                <button type="submit" class="w-full bg-navy-800 hover:bg-navy-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
                     <i class="fas fa-search mr-2"></i>Cari
                 </button>
             </div>
@@ -79,7 +79,7 @@
 
                         <!-- Category Badge -->
                         <div class="mb-3">
-                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-primary-100 text-primary-800">
+                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-primary-800">
                                 <i class="{{ $report->category->icon ?? 'fas fa-folder' }} mr-1"></i>
                                 {{ $report->category->name }}
                             </span>
@@ -114,7 +114,7 @@
                                 @endif
                             </div>
                             <a href="{{ route('reports.public.show', $report->id) }}" 
-                               class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                               class="text-navy-800 hover:text-navy-700 font-medium text-sm">
                                 Lihat Detail <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
@@ -135,7 +135,7 @@
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">Tidak Ada Laporan</h3>
             <p class="text-gray-600 mb-6">Belum ada laporan publik yang tersedia saat ini.</p>
-            <a href="{{ route('home') }}" class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition duration-200">
+            <a href="{{ route('home') }}" class="inline-flex items-center px-6 py-3 bg-navy-800 hover:bg-navy-700 text-white font-semibold rounded-lg transition duration-200">
                 <i class="fas fa-home mr-2"></i>Kembali ke Beranda
             </a>
         </div>

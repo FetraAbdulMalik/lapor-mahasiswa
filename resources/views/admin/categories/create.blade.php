@@ -19,7 +19,7 @@
                 Nama Kategori *
             </label>
             <input type="text" id="name" name="name" required maxlength="255"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('name') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('name') border-red-500 @enderror"
                    value="{{ old('name') }}"
                    placeholder="Contoh: Akademik">
             @error('name')
@@ -33,7 +33,7 @@
                 Deskripsi
             </label>
             <textarea id="description" name="description" rows="4"
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('description') border-red-500 @enderror"
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('description') border-red-500 @enderror"
                       placeholder="Deskripsi kategori ini...">{{ old('description') }}</textarea>
             @error('description')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -48,7 +48,7 @@
                 </label>
                 <div class="flex items-center space-x-3">
                     <input type="text" id="icon" name="icon" maxlength="50"
-                           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('icon') border-red-500 @enderror"
+                           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('icon') border-red-500 @enderror"
                            placeholder="📋"
                            value="{{ old('icon', '📋') }}">
                     <div class="text-4xl" id="iconPreview">{{ old('icon', '📋') }}</div>
@@ -82,7 +82,7 @@
         <div>
             <label class="flex items-center space-x-3">
                 <input type="checkbox" name="is_active" value="1"
-                       class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                       class="w-4 h-4 text-navy-800 border-gray-300 rounded focus:ring-blue-500"
                        {{ old('is_active', true) ? 'checked' : '' }}>
                 <span class="text-sm font-medium text-gray-700">Aktif</span>
             </label>
@@ -91,11 +91,11 @@
         <!-- Form Actions -->
         <div class="flex gap-3 pt-6">
             <a href="{{ route('admin.categories.index') }}"
-               class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+               class="btn-secondary">
                 Batal
             </a>
             <button type="submit"
-                    class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+                    class="btn-primary">
                 Buat Kategori
             </button>
         </div>

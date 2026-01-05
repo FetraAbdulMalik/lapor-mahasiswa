@@ -19,7 +19,7 @@
                 Nama Lengkap *
             </label>
             <input type="text" id="name" name="name" required
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('name') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('name') border-red-500 @enderror"
                    value="{{ old('name') }}">
             @error('name')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -32,7 +32,7 @@
                 Email *
             </label>
             <input type="email" id="email" name="email" required
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('email') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('email') border-red-500 @enderror"
                    value="{{ old('email') }}">
             @error('email')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -45,7 +45,7 @@
                 Nomor Telepon
             </label>
             <input type="tel" id="phone" name="phone"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('phone') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('phone') border-red-500 @enderror"
                    value="{{ old('phone') }}">
             @error('phone')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -58,7 +58,7 @@
                 Password *
             </label>
             <input type="password" id="password" name="password" required minlength="8"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('password') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('password') border-red-500 @enderror"
                    placeholder="Minimal 8 karakter">
             @error('password')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -71,7 +71,7 @@
                 NIM (Nomor Induk Mahasiswa) *
             </label>
             <input type="text" id="nim" name="nim" required
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('nim') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('nim') border-red-500 @enderror"
                    value="{{ old('nim') }}">
             @error('nim')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -85,7 +85,7 @@
                     Fakultas *
                 </label>
                 <select id="faculty_id" name="faculty_id" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('faculty_id') border-red-500 @enderror">
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('faculty_id') border-red-500 @enderror">
                     <option value="">Pilih Fakultas</option>
                     @foreach($faculties as $faculty)
                         <option value="{{ $faculty->id }}" {{ old('faculty_id') == $faculty->id ? 'selected' : '' }}>
@@ -103,7 +103,7 @@
                     Jurusan *
                 </label>
                 <select id="department_id" name="department_id" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('department_id') border-red-500 @enderror">
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('department_id') border-red-500 @enderror">
                     <option value="">Pilih Jurusan</option>
                     @foreach($departments as $department)
                         <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? 'selected' : '' }}>
@@ -124,7 +124,7 @@
                     Semester *
                 </label>
                 <input type="number" id="semester" name="semester" required min="1" max="14"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('semester') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('semester') border-red-500 @enderror"
                        value="{{ old('semester', 1) }}">
                 @error('semester')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -136,7 +136,7 @@
                     Tahun Masuk *
                 </label>
                 <input type="number" id="year_of_entry" name="year_of_entry" required min="2000" max="{{ date('Y') }}"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('year_of_entry') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('year_of_entry') border-red-500 @enderror"
                        value="{{ old('year_of_entry', date('Y')) }}">
                 @error('year_of_entry')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -146,7 +146,7 @@
 
         <!-- Buttons -->
         <div class="flex items-center justify-between pt-6 border-t">
-            <a href="{{ route('admin.students.index') }}" class="text-gray-600 hover:text-gray-900 font-medium">
+            <a href="{{ route('admin.students.index') }}" class="btn-secondary">
                 Batal
             </a>
             <button type="submit" class="btn-primary">

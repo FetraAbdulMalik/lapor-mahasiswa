@@ -3,10 +3,10 @@
 @section('title', 'FAQ - Pertanyaan yang Sering Diajukan')
 
 @section('content')
-<div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-12">
+<div class="bg-gradient-to-r from-navy-800 to-navy-700 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-4xl font-bold mb-2">Pertanyaan yang Sering Diajukan</h1>
-        <p class="text-xl text-primary-100">Temukan jawaban untuk pertanyaan umum tentang sistem pelaporan</p>
+        <p class="text-xl text-blue-100">Temukan jawaban untuk pertanyaan umum tentang sistem pelaporan</p>
     </div>
 </div>
 
@@ -15,7 +15,7 @@
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
         <div class="relative">
             <input type="text" id="faqSearch" placeholder="Cari pertanyaan..." 
-                   class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                   class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
         </div>
     </div>
@@ -28,7 +28,7 @@
                         class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 faq-button"
                         onclick="toggleFaq({{ $index }})">
                     <span class="flex items-start flex-1">
-                        <i class="fas fa-question-circle text-primary-600 mr-3 mt-1"></i>
+                        <i class="fas fa-question-circle text-navy-800 mr-3 mt-1"></i>
                         <span class="font-semibold text-gray-900">{{ $faq['question'] }}</span>
                     </span>
                     <i class="fas fa-chevron-down text-gray-400 transition-transform duration-200 faq-icon-{{ $index }}"></i>
@@ -50,15 +50,15 @@
     </div>
 
     <!-- Still Have Questions -->
-    <div class="mt-12 bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow-xl p-8 text-center">
+    <div class="mt-12 bg-gradient-to-r from-navy-800 to-navy-700 rounded-lg shadow-xl p-8 text-center">
         <i class="fas fa-question-circle text-4xl text-white mb-4"></i>
         <h2 class="text-2xl font-bold text-white mb-4">Masih Punya Pertanyaan?</h2>
-        <p class="text-primary-100 mb-6">Hubungi kami atau buat laporan langsung jika Anda memiliki masalah</p>
+        <p class="text-blue-100 mb-6">Hubungi kami atau buat laporan langsung jika Anda memiliki masalah</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('contact') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition duration-200">
+            <a href="{{ route('contact') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white text-navy-800 font-semibold rounded-lg hover:bg-gray-100 transition duration-200">
                 <i class="fas fa-envelope mr-2"></i>Hubungi Kami
             </a>
-            <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-400 transition duration-200">
+            <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-primary-400 transition duration-200">
                 <i class="fas fa-plus-circle mr-2"></i>Buat Laporan
             </a>
         </div>

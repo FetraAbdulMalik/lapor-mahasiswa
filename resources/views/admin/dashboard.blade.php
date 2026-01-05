@@ -125,7 +125,7 @@
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-lg font-bold text-gray-900">Laporan Terbaru</h3>
-                <a href="{{ route('admin.reports.index') }}" class="text-sm text-primary-600 hover:text-primary-700 font-medium">
+                <a href="{{ route('admin.reports.index') }}" class="text-sm text-navy-800 hover:text-navy-700 font-medium">
                     Lihat Semua →
                 </a>
             </div>
@@ -177,7 +177,7 @@
                             </td>
                             <td class="py-4">
                                 <a href="{{ route('admin.reports.show', $report->id) }}" 
-                                   class="text-primary-600 hover:text-primary-700">
+                                   class="text-navy-800 hover:text-navy-700">
                                     Lihat
                                 </a>
                             </td>
@@ -209,7 +209,7 @@
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-gray-900 truncate">{{ $category->name }}</p>
                             <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
-                                <div class="bg-primary-600 h-2 rounded-full" 
+                                <div class="bg-navy-800 h-2 rounded-full" 
                                      style="width: {{ $reportsByCategory->max('reports_count') > 0 ? ($category->reports_count / $reportsByCategory->max('reports_count')) * 100 : 0 }}%">
                                 </div>
                             </div>

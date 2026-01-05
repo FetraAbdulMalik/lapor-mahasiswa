@@ -12,7 +12,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
     <div class="bg-white rounded-lg shadow-md p-6">
         <p class="text-gray-600 text-sm">Total Laporan</p>
-        <p class="text-3xl font-bold text-primary-600 mt-2">{{ $total_reports }}</p>
+        <p class="text-3xl font-bold text-navy-800 mt-2">{{ $total_reports }}</p>
     </div>
 
     <div class="bg-white rounded-lg shadow-md p-6">
@@ -84,7 +84,7 @@
                             <p class="text-xs text-gray-500">{{ $category->reports_count }} laporan</p>
                         </div>
                     </div>
-                    <span class="text-lg font-bold text-primary-600">{{ $category->reports_count }}</span>
+                    <span class="text-lg font-bold text-navy-800">{{ $category->reports_count }}</span>
                 </div>
             @empty
                 <p class="text-gray-500 text-center py-4">Belum ada data kategori</p>
@@ -97,7 +97,7 @@
 <div class="bg-white rounded-lg shadow-md p-6">
     <div class="flex items-center justify-between mb-4">
         <h3 class="text-lg font-bold text-gray-900">Laporan Terbaru</h3>
-        <a href="{{ route('admin.reports.index') }}" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+        <a href="{{ route('admin.reports.index') }}" class="text-navy-800 hover:text-navy-700 text-sm font-medium">
             Lihat Semua →
         </a>
     </div>
@@ -147,7 +147,7 @@
                             <td class="px-6 py-3 text-gray-600 text-xs">{{ $report->created_at->format('d/m/Y H:i') }}</td>
                             <td class="px-6 py-3">
                                 <a href="{{ route('admin.reports.show', $report->id) }}"
-                                   class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                                   class="text-navy-800 hover:text-navy-700 font-medium text-sm">
                                     Lihat
                                 </a>
                             </td>

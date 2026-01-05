@@ -10,7 +10,7 @@
 
 <!-- Settings Navigation -->
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-    <a href="#general" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition cursor-pointer border-l-4 border-primary-600">
+    <a href="#general" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition cursor-pointer border-l-4 border-navy-800">
         <h3 class="font-bold text-gray-900">Umum</h3>
         <p class="text-sm text-gray-600">Pengaturan dasar aplikasi</p>
     </a>
@@ -42,7 +42,7 @@
                     Nama Aplikasi
                 </label>
                 <input type="text" id="app_name" name="app_name" maxlength="255"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('app_name') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('app_name') border-red-500 @enderror"
                        value="{{ old('app_name', config('app.name', 'Lapor Mahasiswa')) }}">
                 @error('app_name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -55,7 +55,7 @@
                     Nama Institusi
                 </label>
                 <input type="text" id="institution_name" name="institution_name" maxlength="255"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('institution_name') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('institution_name') border-red-500 @enderror"
                        value="{{ old('institution_name', config('app.institution', 'Universitas')) }}">
                 @error('institution_name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -68,14 +68,14 @@
                 Deskripsi Aplikasi
             </label>
             <textarea id="description" name="description" rows="3"
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('description') border-red-500 @enderror">{{ old('description', 'Platform untuk melaporkan masalah dan keluhan di kampus') }}</textarea>
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('description') border-red-500 @enderror">{{ old('description', 'Platform untuk melaporkan masalah dan keluhan di kampus') }}</textarea>
             @error('description')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
             @enderror
         </div>
 
         <div class="flex gap-3 pt-4">
-            <button type="submit" class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+            <button type="submit" class="btn-primary">
                 Simpan Perubahan
             </button>
         </div>
@@ -95,7 +95,7 @@
                     Driver Email
                 </label>
                 <select id="mail_driver" name="mail_driver"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     <option value="smtp" {{ config('mail.driver') === 'smtp' ? 'selected' : '' }}>SMTP</option>
                     <option value="sendmail" {{ config('mail.driver') === 'sendmail' ? 'selected' : '' }}>Sendmail</option>
                     <option value="log" {{ config('mail.driver') === 'log' ? 'selected' : '' }}>Log</option>
@@ -107,7 +107,7 @@
                     Email Pengirim
                 </label>
                 <input type="email" id="mail_from_address" name="mail_from_address"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                        value="{{ config('mail.from.address', 'noreply@example.com') }}">
             </div>
         </div>
@@ -119,7 +119,7 @@
         </div>
 
         <div class="flex gap-3 pt-4">
-            <button type="submit" class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+            <button type="submit" class="btn-primary">
                 Simpan Perubahan
             </button>
         </div>
@@ -139,7 +139,7 @@
             </div>
             <form method="POST" action="{{ route('admin.settings.backup') }}" class="inline">
                 @csrf
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition" onclick="return confirm('Buat backup database sekarang?')">
+                <button type="submit" class="btn-primary btn-sm" onclick="return confirm('Buat backup database sekarang?')">
                     Buat Backup
                 </button>
             </form>
@@ -153,7 +153,7 @@
             </div>
             <form method="POST" action="{{ route('admin.settings.clear-cache') }}" class="inline">
                 @csrf
-                <button type="submit" class="px-4 py-2 bg-yellow-600 text-white rounded-lg text-sm hover:bg-yellow-700 transition" onclick="return confirm('Bersihkan cache aplikasi?')">
+                <button type="submit" class="btn-secondary btn-sm" onclick="return confirm('Bersihkan cache aplikasi?')">
                     Bersihkan Cache
                 </button>
             </form>
@@ -167,7 +167,7 @@
             </div>
             <form method="POST" action="{{ route('admin.settings.clear-logs') }}" class="inline">
                 @csrf
-                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition" onclick="return confirm('Bersihkan semua log aplikasi?')">
+                <button type="submit" class="btn-outline btn-sm" onclick="return confirm('Bersihkan semua log aplikasi?')">
                     Bersihkan Log
                 </button>
             </form>

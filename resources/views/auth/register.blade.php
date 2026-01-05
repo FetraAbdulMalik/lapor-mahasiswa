@@ -4,7 +4,7 @@
 <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto">
         <div class="text-center mb-8">
-            <div class="mx-auto h-16 w-16 bg-primary-600 rounded-full flex items-center justify-center">
+            <div class="mx-auto h-16 w-16 bg-navy-800 rounded-full flex items-center justify-center">
                 <span class="text-white text-2xl font-bold">LM</span>
             </div>
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
@@ -12,7 +12,7 @@
             </h2>
             <p class="mt-2 text-sm text-gray-600">
                 Sudah punya akun? 
-                <a href="{{ route('login') }}" class="font-medium text-primary-600 hover:text-primary-500">
+                <a href="{{ route('login') }}" class="font-medium text-navy-800 hover:text-blue-500">
                     Masuk di sini
                 </a>
             </p>
@@ -148,10 +148,10 @@
                 <!-- Terms -->
                 <div class="flex items-start">
                     <input id="terms" name="terms" type="checkbox" required 
-                           class="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                           class="mt-1 h-4 w-4 text-navy-800 focus:ring-blue-500 border-gray-300 rounded">
                     <label for="terms" class="ml-2 block text-sm text-gray-900">
-                        Saya menyetujui <a href="#" class="text-primary-600 hover:underline">Syarat & Ketentuan</a> dan 
-                        <a href="#" class="text-primary-600 hover:underline">Kebijakan Privasi</a>
+                        Saya menyetujui <a href="#" class="text-navy-800 hover:underline">Syarat & Ketentuan</a> dan 
+                        <a href="#" class="text-navy-800 hover:underline">Kebijakan Privasi</a>
                     </label>
                 </div>
                 

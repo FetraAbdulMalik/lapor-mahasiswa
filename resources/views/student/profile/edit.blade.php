@@ -21,7 +21,7 @@
                     Nama Lengkap *
                 </label>
                 <input type="text" id="name" name="name" required maxlength="255"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('name') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('name') border-red-500 @enderror"
                        value="{{ old('name', $user->name) }}">
                 @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -47,7 +47,7 @@
                     No. Telepon
                 </label>
                 <input type="tel" id="phone" name="phone" maxlength="20"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('phone') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('phone') border-red-500 @enderror"
                        value="{{ old('phone', $profile?->phone ?? '') }}"
                        placeholder="Contoh: 08123456789">
                 @error('phone')
@@ -83,7 +83,7 @@
                 @endif
                 <div class="flex-1">
                     <input type="file" id="avatar" name="avatar" accept="image/*"
-                           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100 @error('avatar') border-red-500 @enderror">
+                           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-navy-700 hover:file:bg-blue-100 @error('avatar') border-red-500 @enderror">
                     <p class="text-xs text-gray-500 mt-1">JPG, PNG (Maks 2MB)</p>
                 </div>
             </div>
@@ -118,11 +118,11 @@
         <!-- Form Actions -->
         <div class="border-t pt-6 flex gap-3">
             <a href="{{ route('student.profile.index') }}"
-               class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+               class="btn-secondary">
                 Batal
             </a>
             <button type="submit"
-                    class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+                    class="btn-primary">
                 Simpan Perubahan
             </button>
         </div>
@@ -142,7 +142,7 @@
                 Password Saat Ini *
             </label>
             <input type="password" id="current_password" name="current_password" required
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('current_password') border-red-500 @enderror">
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('current_password') border-red-500 @enderror">
             @error('current_password')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -153,7 +153,7 @@
                 Password Baru *
             </label>
             <input type="password" id="password" name="password" required
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('password') border-red-500 @enderror">
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('password') border-red-500 @enderror">
             <p class="text-xs text-gray-500 mt-1">Minimal 8 karakter, kombinasi huruf besar, kecil, angka, dan simbol</p>
             @error('password')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -165,7 +165,7 @@
                 Konfirmasi Password *
             </label>
             <input type="password" id="password_confirmation" name="password_confirmation" required
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('password_confirmation') border-red-500 @enderror">
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('password_confirmation') border-red-500 @enderror">
             @error('password_confirmation')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -173,7 +173,7 @@
 
         <div class="flex gap-3 pt-4">
             <button type="submit"
-                    class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    class="btn-primary">
                 Ubah Password
             </button>
         </div>

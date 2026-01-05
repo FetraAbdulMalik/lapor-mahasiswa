@@ -6,7 +6,7 @@
 <div class="mb-6 flex items-center justify-between">
     <div>
         <div class="flex items-center gap-3 mb-2">
-            <a href="{{ route('admin.categories.index') }}" class="text-primary-600 hover:text-primary-700 text-sm">
+            <a href="{{ route('admin.categories.index') }}" class="text-navy-800 hover:text-navy-700 text-sm">
                 ← Kembali
             </a>
         </div>
@@ -15,14 +15,14 @@
     </div>
     <div class="flex gap-2">
         <a href="{{ route('admin.categories.edit', $category->id) }}"
-           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+           class="btn-primary">
             Edit
         </a>
         <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}" class="inline"
               onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
             @csrf
             @method('DELETE')
-            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+            <button type="submit" class="btn-outline">
                 Hapus
             </button>
         </form>
@@ -107,7 +107,7 @@
                             <td class="px-6 py-3 text-gray-600 text-xs">{{ $report->created_at->format('d/m/Y') }}</td>
                             <td class="px-6 py-3">
                                 <a href="{{ route('admin.reports.show', $report->id) }}"
-                                   class="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                                   class="text-navy-800 hover:text-navy-700 font-medium text-sm">
                                     Lihat
                                 </a>
                             </td>

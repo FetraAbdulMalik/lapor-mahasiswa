@@ -63,7 +63,7 @@
                 </td>
                 <td class="px-6 py-4">
                     <a href="{{ route('admin.categories.show', $category->id) }}" 
-                       class="text-primary-600 hover:text-primary-700 font-semibold">
+                       class="text-navy-800 hover:text-navy-700 font-semibold">
                         {{ $category->reports_count }}
                     </a>
                 </td>
@@ -81,7 +81,7 @@
                 <td class="px-6 py-4">
                     <div class="flex items-center space-x-2">
                         <a href="{{ route('admin.categories.show', $category->id) }}" 
-                           class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                           class="text-navy-800 hover:text-navy-700 text-sm font-medium">
                             Lihat
                         </a>
                         <span class="text-gray-300">|</span>

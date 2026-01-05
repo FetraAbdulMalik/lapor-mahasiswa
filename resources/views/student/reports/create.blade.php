@@ -7,8 +7,8 @@
         <div class="flex items-center justify-between" x-data="{ step: 1 }">
             <div class="flex-1">
                 <div class="flex items-center">
-                    <div class="flex items-center text-primary-600 relative">
-                        <div class="rounded-full h-12 w-12 flex items-center justify-center bg-primary-600 text-white font-bold">
+                    <div class="flex items-center text-navy-800 relative">
+                        <div class="rounded-full h-12 w-12 flex items-center justify-center bg-navy-800 text-white font-bold">
                             1
                         </div>
                         <div class="ml-4">
@@ -56,7 +56,7 @@
                         <input type="radio" name="category_id" value="{{ $category->id }}" 
                                class="peer sr-only" required
                                {{ old('category_id') == $category->id ? 'checked' : '' }}>
-                        <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-primary-300 peer-checked:border-primary-600 peer-checked:bg-primary-50 transition">
+                        <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-accent-300 peer-checked:border-navy-800 peer-checked:bg-blue-50 transition">
                             <div class="text-3xl mb-2">{{ $category->icon }}</div>
                             <div class="font-bold text-gray-900 mb-1">{{ $category->name }}</div>
                             <div class="text-sm text-gray-600">{{ Str::limit($category->description, 60) }}</div>
@@ -195,7 +195,7 @@
                             <label class="flex items-start cursor-pointer">
                                 <input type="radio" name="visibility" value="public" 
                                        {{ old('visibility', 'public') == 'public' ? 'checked' : '' }}
-                                       class="mt-1 h-4 w-4 text-primary-600">
+                                       class="mt-1 h-4 w-4 text-navy-800">
                                 <div class="ml-3">
                                     <span class="font-medium text-gray-900">Publik</span>
                                     <p class="text-sm text-gray-600">Nama Anda akan terlihat, laporan bisa dilihat siapa saja</p>
@@ -204,7 +204,7 @@
                             <label class="flex items-start cursor-pointer">
                                 <input type="radio" name="visibility" value="anonymous"
                                        {{ old('visibility') == 'anonymous' ? 'checked' : '' }}
-                                       class="mt-1 h-4 w-4 text-primary-600">
+                                       class="mt-1 h-4 w-4 text-navy-800">
                                 <div class="ml-3">
                                     <span class="font-medium text-gray-900">Anonim</span>
                                     <p class="text-sm text-gray-600">Identitas Anda disembunyikan, hanya admin yang tahu</p>
@@ -213,7 +213,7 @@
                             <label class="flex items-start cursor-pointer">
                                 <input type="radio" name="visibility" value="private"
                                        {{ old('visibility') == 'private' ? 'checked' : '' }}
-                                       class="mt-1 h-4 w-4 text-primary-600">
+                                       class="mt-1 h-4 w-4 text-navy-800">
                                 <div class="ml-3">
                                     <span class="font-medium text-gray-900">Private</span>
                                     <p class="text-sm text-gray-600">Hanya Anda dan admin yang bisa melihat</p>
@@ -239,7 +239,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                     </svg>
                     <label for="attachments" class="cursor-pointer">
-                        <span class="text-primary-600 font-semibold">Upload file</span>
+                        <span class="text-navy-800 font-semibold">Upload file</span>
                         <span class="text-gray-600"> atau drag & drop</span>
                     </label>
                     <input type="file" id="attachments" name="attachments[]" multiple accept="image/*,. pdf,.doc,.docx"
@@ -257,7 +257,7 @@
             <!-- Terms -->
             <div class="mb-6">
                 <label class="flex items-start cursor-pointer">
-                    <input type="checkbox" name="terms" required class="mt-1 h-4 w-4 text-primary-600">
+                    <input type="checkbox" name="terms" required class="mt-1 h-4 w-4 text-navy-800">
                     <span class="ml-3 text-sm text-gray-700">
                         Saya menyatakan bahwa informasi yang saya berikan adalah benar dan dapat dipertanggungjawabkan.  
                         Saya memahami bahwa laporan palsu dapat dikenakan sanksi. 

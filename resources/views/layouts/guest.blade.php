@@ -21,7 +21,7 @@
                 <div class="flex items-center">
                     <!-- Logo -->
                     <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 bg-navy-800 rounded-lg flex items-center justify-center">
                             <span class="text-white text-xl font-bold">LM</span>
                         </div>
                         <span class="text-xl font-bold text-gray-900">Lapor Mahasiswa</span>
@@ -29,19 +29,19 @@
                     
                     <!-- Navigation Links -->
                     <div class="hidden md:flex md:ml-10 md:space-x-8">
-                        <a href="{{ route('home') }}" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">
+                        <a href="{{ route('home') }}" class="text-gray-700 hover:text-navy-800 px-3 py-2 text-sm font-medium">
                             Beranda
                         </a>
-                        <a href="{{ route('reports.public') }}" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">
+                        <a href="{{ route('reports.public') }}" class="text-gray-700 hover:text-navy-800 px-3 py-2 text-sm font-medium">
                             Laporan Publik
                         </a>
-                        <a href="{{ route('statistics') }}" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">
+                        <a href="{{ route('statistics') }}" class="text-gray-700 hover:text-navy-800 px-3 py-2 text-sm font-medium">
                             Statistik
                         </a>
-                        <a href="{{ route('how.to.report') }}" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">
+                        <a href="{{ route('how.to.report') }}" class="text-gray-700 hover:text-navy-800 px-3 py-2 text-sm font-medium">
                             Cara Melapor
                         </a>
-                        <a href="{{ route('faq') }}" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">
+                        <a href="{{ route('faq') }}" class="text-gray-700 hover:text-navy-800 px-3 py-2 text-sm font-medium">
                             FAQ
                         </a>
                     </div>
@@ -51,11 +51,11 @@
                 <div class="flex items-center space-x-4">
                     @auth
                         <a href="{{ auth()->user()->isStudent() ? route('student.dashboard') : route('admin.dashboard') }}" 
-                           class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">
+                           class="text-gray-700 hover:text-navy-800 px-3 py-2 text-sm font-medium">
                             Dashboard
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-navy-800 px-3 py-2 text-sm font-medium">
                             Masuk
                         </a>
                         <a href="{{ route('register') }}" class="btn-primary">

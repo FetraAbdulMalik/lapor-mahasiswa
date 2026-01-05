@@ -3,10 +3,10 @@
 @section('title', 'Statistik Laporan')
 
 @section('content')
-<div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-12">
+<div class="bg-gradient-to-r from-navy-800 to-navy-700 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-4xl font-bold mb-2">Statistik Laporan</h1>
-        <p class="text-xl text-primary-100">Data dan analisis laporan mahasiswa</p>
+        <p class="text-xl text-blue-100">Data dan analisis laporan mahasiswa</p>
     </div>
 </div>
 
@@ -79,7 +79,7 @@
                             <span class="text-sm font-bold text-gray-900">{{ $category->reports_count }}</span>
                         </div>
                         <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary-600 h-2 rounded-full transition-all duration-300" 
+                            <div class="bg-navy-800 h-2 rounded-full transition-all duration-300" 
                                  style="width: {{ $reportsByCategory->max('reports_count') > 0 ? ($category->reports_count / $reportsByCategory->max('reports_count')) * 100 : 0 }}%">
                             </div>
                         </div>
@@ -92,12 +92,12 @@
         <div class="bg-white rounded-lg shadow-md p-6">
             <h2 class="text-xl font-bold text-gray-900 mb-6">Waktu Respons</h2>
             <div class="text-center py-8">
-                <div class="inline-flex items-center justify-center w-32 h-32 bg-primary-100 rounded-full mb-4">
+                <div class="inline-flex items-center justify-center w-32 h-32 bg-blue-100 rounded-full mb-4">
                     <div>
-                        <div class="text-4xl font-bold text-primary-600">
+                        <div class="text-4xl font-bold text-navy-800">
                             {{ $avgResponseTime ? number_format($avgResponseTime, 1) : '0' }}
                         </div>
-                        <div class="text-sm text-primary-600 font-medium">Hari</div>
+                        <div class="text-sm text-navy-800 font-medium">Hari</div>
                     </div>
                 </div>
                 <p class="text-gray-600">Rata-rata waktu penyelesaian laporan</p>
@@ -141,7 +141,7 @@
                         @endphp
                         <div class="flex flex-col items-center">
                             <div class="text-sm font-bold text-gray-900 mb-2">{{ $month->total }}</div>
-                            <div class="w-16 bg-primary-600 rounded-t-lg transition-all duration-300 hover:bg-primary-700" 
+                            <div class="w-16 bg-navy-800 rounded-t-lg transition-all duration-300 hover:bg-navy-700" 
                                  style="height: {{ max($height, 5) }}%">
                             </div>
                             <div class="text-xs text-gray-600 mt-2">
@@ -160,14 +160,14 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="mt-12 bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow-xl p-8 text-center">
+    <div class="mt-12 bg-gradient-to-r from-navy-800 to-navy-700 rounded-lg shadow-xl p-8 text-center">
         <h2 class="text-2xl font-bold text-white mb-4">Punya Masalah atau Keluhan?</h2>
-        <p class="text-primary-100 mb-6">Laporkan sekarang dan bantu kami meningkatkan kualitas kampus</p>
+        <p class="text-blue-100 mb-6">Laporkan sekarang dan bantu kami meningkatkan kualitas kampus</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition duration-200">
+            <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white text-navy-800 font-semibold rounded-lg hover:bg-gray-100 transition duration-200">
                 <i class="fas fa-sign-in-alt mr-2"></i>Login untuk Melapor
             </a>
-            <a href="{{ route('reports.public') }}" class="inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-400 transition duration-200">
+            <a href="{{ route('reports.public') }}" class="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-primary-400 transition duration-200">
                 <i class="fas fa-list mr-2"></i>Lihat Laporan Publik
             </a>
         </div>

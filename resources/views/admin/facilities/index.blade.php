@@ -9,7 +9,7 @@
         <p class="text-gray-600">Kelola data fasilitas di kampus</p>
     </div>
     <a href="{{ route('admin.facilities.create') }}"
-       class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+       class="px-4 py-2 bg-navy-800 text-white rounded-lg hover:bg-navy-700 transition">
         + Tambah Fasilitas
     </a>
 </div>
@@ -18,7 +18,7 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
     <div class="bg-white rounded-lg shadow-md p-6">
         <p class="text-gray-600 text-sm">Total Fasilitas</p>
-        <p class="text-3xl font-bold text-primary-600 mt-2">{{ $total_facilities }}</p>
+        <p class="text-3xl font-bold text-navy-800 mt-2">{{ $total_facilities }}</p>
     </div>
     <div class="bg-white rounded-lg shadow-md p-6">
         <p class="text-gray-600 text-sm">Fasilitas Aktif</p>
@@ -88,7 +88,7 @@
                     <tr>
                         <td colspan="7" class="px-6 py-8 text-center text-gray-500">
                             <p>Belum ada data fasilitas</p>
-                            <a href="{{ route('admin.facilities.create') }}" class="text-primary-600 hover:text-primary-700 text-sm mt-2 inline-block">
+                            <a href="{{ route('admin.facilities.create') }}" class="text-navy-800 hover:text-navy-700 text-sm mt-2 inline-block">
                                 Buat yang pertama
                             </a>
                         </td>

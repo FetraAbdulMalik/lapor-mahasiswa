@@ -6,7 +6,7 @@
 <div class="mb-6 flex items-center justify-between">
     <div>
         <div class="flex items-center gap-3 mb-2">
-            <a href="{{ route('admin.buildings.index') }}" class="text-primary-600 hover:text-primary-700 text-sm">
+            <a href="{{ route('admin.buildings.index') }}" class="text-navy-800 hover:text-navy-700 text-sm">
                 ← Kembali
             </a>
         </div>
@@ -15,14 +15,14 @@
     </div>
     <div class="flex gap-2">
         <a href="{{ route('admin.buildings.edit', $building->id) }}"
-           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+           class="btn-primary">
             Edit
         </a>
         <form method="POST" action="{{ route('admin.buildings.destroy', $building->id) }}" class="inline"
               onsubmit="return confirm('Apakah Anda yakin ingin menghapus gedung ini?');">
             @csrf
             @method('DELETE')
-            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+            <button type="submit" class="btn-outline">
                 Hapus
             </button>
         </form>
@@ -57,7 +57,7 @@
     <div class="flex items-center justify-between mb-4">
         <h3 class="text-lg font-bold text-gray-900">Fasilitas</h3>
         <a href="{{ route('admin.facilities.create', ['building_id' => $building->id]) }}"
-           class="px-3 py-1 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700 transition">
+           class="px-3 py-1 bg-navy-800 text-white text-sm rounded-lg hover:bg-navy-700 transition">
             + Tambah
         </a>
     </div>
@@ -112,7 +112,7 @@
         <div class="text-center py-8 text-gray-500">
             <p>Belum ada fasilitas untuk gedung ini</p>
             <a href="{{ route('admin.facilities.create', ['building_id' => $building->id]) }}"
-               class="text-primary-600 hover:text-primary-700 text-sm mt-2 inline-block">
+               class="text-navy-800 hover:text-navy-700 text-sm mt-2 inline-block">
                 Tambah fasilitas pertama
             </a>
         </div>

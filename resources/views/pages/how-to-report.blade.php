@@ -3,10 +3,10 @@
 @section('title', 'Cara Melapor')
 
 @section('content')
-<div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-12">
+<div class="bg-gradient-to-r from-navy-800 to-navy-700 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-4xl font-bold mb-2">Cara Melapor</h1>
-        <p class="text-xl text-primary-100">Panduan lengkap membuat laporan mahasiswa</p>
+        <p class="text-xl text-blue-100">Panduan lengkap membuat laporan mahasiswa</p>
     </div>
 </div>
 
@@ -14,8 +14,8 @@
     <!-- Introduction -->
     <div class="bg-white rounded-lg shadow-md p-8 mb-8">
         <div class="flex items-start mb-6">
-            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
-                <i class="fas fa-info-circle text-2xl text-primary-600"></i>
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-info-circle text-2xl text-navy-800"></i>
             </div>
             <div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-2">Tentang Sistem Pelaporan</h2>
@@ -35,7 +35,7 @@
         <!-- Step 1 -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
                     1
                 </div>
                 <div class="flex-1">
@@ -44,7 +44,7 @@
                         Masuk menggunakan akun mahasiswa Anda. Jika belum memiliki akun, lakukan registrasi terlebih dahulu 
                         menggunakan email kampus dan NIM Anda.
                     </p>
-                    <a href="{{ route('login') }}" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+                    <a href="{{ route('login') }}" class="inline-flex items-center text-navy-800 hover:text-navy-700 font-medium">
                         <i class="fas fa-sign-in-alt mr-2"></i>Login Sekarang
                     </a>
                 </div>
@@ -54,7 +54,7 @@
         <!-- Step 2 -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
                     2
                 </div>
                 <div class="flex-1">
@@ -69,7 +69,7 @@
         <!-- Step 3 -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
                     3
                 </div>
                 <div class="flex-1">
@@ -80,7 +80,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         @foreach($categories as $category)
                             <div class="flex items-center p-3 bg-gray-50 rounded-lg">
-                                <i class="{{ $category->icon ?? 'fas fa-folder' }} text-primary-600 mr-3"></i>
+                                <i class="{{ $category->icon ?? 'fas fa-folder' }} text-navy-800 mr-3"></i>
                                 <span class="text-gray-700 font-medium">{{ $category->name }}</span>
                             </div>
                         @endforeach
@@ -92,7 +92,7 @@
         <!-- Step 4 -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
                     4
                 </div>
                 <div class="flex-1">
@@ -123,7 +123,7 @@
         <!-- Step 5 -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
                     5
                 </div>
                 <div class="flex-1">
@@ -152,7 +152,7 @@
         <!-- Step 6 -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-start">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">
                     6
                 </div>
                 <div class="flex-1">
@@ -222,14 +222,14 @@
     </div>
 
     <!-- CTA -->
-    <div class="text-center bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow-xl p-8">
+    <div class="text-center bg-gradient-to-r from-navy-800 to-navy-700 rounded-lg shadow-xl p-8">
         <h2 class="text-2xl font-bold text-white mb-4">Siap Membuat Laporan?</h2>
-        <p class="text-primary-100 mb-6">Login sekarang dan sampaikan masalah Anda</p>
+        <p class="text-blue-100 mb-6">Login sekarang dan sampaikan masalah Anda</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition duration-200">
+            <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white text-navy-800 font-semibold rounded-lg hover:bg-gray-100 transition duration-200">
                 <i class="fas fa-sign-in-alt mr-2"></i>Login
             </a>
-            <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-400 transition duration-200">
+            <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-primary-400 transition duration-200">
                 <i class="fas fa-user-plus mr-2"></i>Daftar
             </a>
         </div>

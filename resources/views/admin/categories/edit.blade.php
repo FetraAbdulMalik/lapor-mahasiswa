@@ -20,7 +20,7 @@
                 Nama Kategori *
             </label>
             <input type="text" id="name" name="name" required maxlength="255"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('name') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('name') border-red-500 @enderror"
                    value="{{ old('name', $category->name) }}">
             @error('name')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -33,7 +33,7 @@
                 Deskripsi
             </label>
             <textarea id="description" name="description" rows="4"
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('description') border-red-500 @enderror"
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('description') border-red-500 @enderror"
                       placeholder="Deskripsi kategori ini...">{{ old('description', $category->description) }}</textarea>
             @error('description')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -48,7 +48,7 @@
                 </label>
                 <div class="flex items-center space-x-3">
                     <input type="text" id="icon" name="icon" maxlength="50"
-                           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('icon') border-red-500 @enderror"
+                           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('icon') border-red-500 @enderror"
                            placeholder="📋"
                            value="{{ old('icon', $category->icon) }}">
                     <div class="text-4xl" id="iconPreview">{{ $category->icon ?? '📋' }}</div>
@@ -79,7 +79,7 @@
         <!-- Active Status -->
         <div class="flex items-center">
             <input type="checkbox" id="is_active" name="is_active" 
-                   class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                   class="h-4 w-4 text-navy-800 focus:ring-blue-500 border-gray-300 rounded"
                    {{ old('is_active', $category->is_active) ? 'checked' : '' }}>
             <label for="is_active" class="ml-2 block text-sm text-gray-700">
                 Aktifkan kategori ini
@@ -88,7 +88,7 @@
 
         <!-- Buttons -->
         <div class="flex items-center justify-between pt-6 border-t">
-            <a href="{{ route('admin.categories.index') }}" class="text-gray-600 hover:text-gray-900 font-medium">
+            <a href="{{ route('admin.categories.index') }}" class="btn-secondary">
                 Batal
             </a>
             <button type="submit" class="btn-primary">

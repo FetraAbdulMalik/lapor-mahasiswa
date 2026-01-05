@@ -20,7 +20,7 @@
                 Gedung *
             </label>
             <select id="building_id" name="building_id" required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('building_id') border-red-500 @enderror">
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('building_id') border-red-500 @enderror">
                 <option value="">-- Pilih Gedung --</option>
                 @foreach($buildings as $building)
                     <option value="{{ $building->id }}" {{ old('building_id', $facility->building_id) == $building->id ? 'selected' : '' }}>
@@ -39,7 +39,7 @@
                 Nama Fasilitas *
             </label>
             <input type="text" id="name" name="name" required maxlength="255"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('name') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('name') border-red-500 @enderror"
                    value="{{ old('name', $facility->name) }}">
             @error('name')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -52,7 +52,7 @@
                 Kode Fasilitas *
             </label>
             <input type="text" id="code" name="code" required maxlength="50"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('code') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('code') border-red-500 @enderror"
                    value="{{ old('code', $facility->code) }}">
             @error('code')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -65,7 +65,7 @@
                 Tipe Fasilitas
             </label>
             <select id="type" name="type"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('type') border-red-500 @enderror">
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('type') border-red-500 @enderror">
                 <option value="">-- Pilih Tipe --</option>
                 <option value="classroom" {{ old('type', $facility->type) === 'classroom' ? 'selected' : '' }}>Ruang Kelas</option>
                 <option value="lab" {{ old('type', $facility->type) === 'lab' ? 'selected' : '' }}>Laboratorium</option>
@@ -88,7 +88,7 @@
                     Lantai
                 </label>
                 <input type="number" id="floor" name="floor" min="1"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('floor') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('floor') border-red-500 @enderror"
                        value="{{ old('floor', $facility->floor) }}">
                 @error('floor')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -101,7 +101,7 @@
                     Kapasitas
                 </label>
                 <input type="number" id="capacity" name="capacity" min="1"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('capacity') border-red-500 @enderror"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('capacity') border-red-500 @enderror"
                        value="{{ old('capacity', $facility->capacity) }}">
                 @error('capacity')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -115,7 +115,7 @@
                 Lokasi
             </label>
             <input type="text" id="location" name="location" maxlength="255"
-                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent @error('location') border-red-500 @enderror"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('location') border-red-500 @enderror"
                    value="{{ old('location', $facility->location ?? '') }}">
             @error('location')
                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -126,7 +126,7 @@
         <div>
             <label class="flex items-center space-x-3">
                 <input type="checkbox" name="is_active" value="1"
-                       class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                       class="w-4 h-4 text-navy-800 border-gray-300 rounded focus:ring-blue-500"
                        {{ old('is_active', $facility->is_active) ? 'checked' : '' }}>
                 <span class="text-sm font-medium text-gray-700">Aktif</span>
             </label>
@@ -135,11 +135,11 @@
         <!-- Form Actions -->
         <div class="flex gap-3 pt-6">
             <a href="{{ route('admin.buildings.show', $facility->building_id) }}"
-               class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+               class="btn-secondary">
                 Batal
             </a>
             <button type="submit"
-                    class="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+                    class="btn-primary">
                 Simpan Perubahan
             </button>
         </div>
