@@ -74,7 +74,7 @@
             </label>
             <div class="flex items-center gap-4">
                 @if($profile?->avatar)
-                    <img src="{{ asset('storage/' . $profile->avatar) }}" alt="Avatar"
+                    <img src="{{ Storage::url($profile->avatar) }}" alt="Avatar"
                          class="w-16 h-16 rounded-full object-cover">
                 @else
                     <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center">

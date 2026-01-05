@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUndefinedFieldInspection */
 
 namespace App\Http\Controllers\Auth;
 

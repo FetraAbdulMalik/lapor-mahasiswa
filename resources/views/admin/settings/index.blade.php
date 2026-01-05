@@ -131,34 +131,46 @@
     <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-4">Manajemen Backup</h3>
 
     <div class="space-y-4">
+        <!-- Database Backup -->
         <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
             <div>
                 <p class="font-medium text-gray-900">Database Backup</p>
                 <p class="text-sm text-gray-600">Buat backup database lengkap</p>
             </div>
-            <button type="button" disabled class="px-4 py-2 bg-gray-400 text-white rounded-lg text-sm cursor-not-allowed" title="Fitur akan datang">
-                Buat Backup
-            </button>
+            <form method="POST" action="{{ route('admin.settings.backup') }}" class="inline">
+                @csrf
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition" onclick="return confirm('Buat backup database sekarang?')">
+                    Buat Backup
+                </button>
+            </form>
         </div>
 
+        <!-- Cache Clearing -->
         <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
             <div>
                 <p class="font-medium text-gray-900">Cache Clearing</p>
                 <p class="text-sm text-gray-600">Bersihkan cache aplikasi</p>
             </div>
-            <button type="button" disabled class="px-4 py-2 bg-gray-400 text-white rounded-lg text-sm cursor-not-allowed" title="Fitur akan datang">
-                Bersihkan Cache
-            </button>
+            <form method="POST" action="{{ route('admin.settings.clear-cache') }}" class="inline">
+                @csrf
+                <button type="submit" class="px-4 py-2 bg-yellow-600 text-white rounded-lg text-sm hover:bg-yellow-700 transition" onclick="return confirm('Bersihkan cache aplikasi?')">
+                    Bersihkan Cache
+                </button>
+            </form>
         </div>
 
+        <!-- Log Clearing -->
         <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
             <div>
                 <p class="font-medium text-gray-900">Log Clearing</p>
                 <p class="text-sm text-gray-600">Bersihkan file log aplikasi</p>
             </div>
-            <button type="button" disabled class="px-4 py-2 bg-gray-400 text-white rounded-lg text-sm cursor-not-allowed" title="Fitur akan datang">
-                Bersihkan Log
-            </button>
+            <form method="POST" action="{{ route('admin.settings.clear-logs') }}" class="inline">
+                @csrf
+                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition" onclick="return confirm('Bersihkan semua log aplikasi?')">
+                    Bersihkan Log
+                </button>
+            </form>
         </div>
     </div>
 </div>

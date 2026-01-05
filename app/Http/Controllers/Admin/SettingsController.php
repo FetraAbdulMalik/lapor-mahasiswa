@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 
 class SettingsController extends Controller
 {
@@ -40,5 +42,85 @@ class SettingsController extends Controller
 
         return redirect()->route('admin.settings.index')
             ->with('success', 'Settings updated successfully.');
+    }
+
+    /**
+     * Backup database
+     */
+    public function backupDatabase()
+    {
+        try {
+            $filename = 'lapor-mahasiswa-backup-' . now()->format('Y-m-d-H-i-s') . '.sql';
+            $backupPath = storage_path('backups/' . $filename);
+            
+            // Create backups directory if not exists
+            if (!File::exists(storage_path('backups'))) {
+                File::makeDirectory(storage_path('backups'), 0755, true);
+            }
+
+            // Execute mysqldump command
+            $command = sprintf(
+                'mysqldump --user=%s --password=%s %s > %s',
+                env('DB_USERNAME'),
+                env('DB_PASSWORD'),
+                env('DB_DATABASE'),
+                escapeshellarg($backupPath)
+            );
+
+            exec($command, $output, $return_var);
+
+            if ($return_var === 0 && file_exists($backupPath)) {
+                return redirect()->route('admin.settings.index')
+                    ->with('success', "Database backup created: {$filename}");
+            } else {
+                return redirect()->route('admin.settings.index')
+                    ->with('error', 'Failed to create database backup.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('admin.settings.index')
+                ->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Clear application cache
+     */
+    public function clearCache()
+    {
+        try {
+            Artisan::call('cache:clear');
+            return redirect()->route('admin.settings.index')
+                ->with('success', 'Application cache cleared successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.settings.index')
+                ->with('error', 'Error clearing cache: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Clear application logs
+     */
+    public function clearLogs()
+    {
+        try {
+            $logPath = storage_path('logs');
+            
+            if (File::exists($logPath)) {
+                $files = File::glob($logPath . '/*');
+                foreach ($files as $file) {
+                    if (File::isFile($file)) {
+                        File::delete($file);
+                    }
+                }
+                return redirect()->route('admin.settings.index')
+                    ->with('success', 'Application logs cleared successfully.');
+            }
+            
+            return redirect()->route('admin.settings.index')
+                ->with('warning', 'No logs found to clear.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.settings.index')
+                ->with('error', 'Error clearing logs: ' . $e->getMessage());
+        }
     }
 }
