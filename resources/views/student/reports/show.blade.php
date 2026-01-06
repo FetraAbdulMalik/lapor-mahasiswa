@@ -50,7 +50,7 @@
                             Edit
                         </a>
                         <form method="POST" action="{{ route('student.reports.destroy', $report->id) }}" 
-                              onsubmit="return confirm('Yakin ingin menghapus laporan ini?')">
+                              onsubmit="return confirm('Yakin ingin menghapus laporan ini? Tindakan ini tidak bisa dibatalkan.')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-sm text-red-600 hover:bg-red-50 px-4 py-2 rounded-lg border border-red-300">

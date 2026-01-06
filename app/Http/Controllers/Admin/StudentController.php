@@ -216,4 +216,36 @@ class StudentController extends Controller
             return back()->with('error', 'Gagal memperbarui mahasiswa: ' . $e->getMessage())->withInput();
         }
     }
+
+    /**
+     * Delete a student.
+     */
+    public function destroy(User $student)
+    {
+        // Verify the user is a student
+        if ($student->role !== 'student') {
+            return redirect()->route('admin.students.index')
+                ->with('error', 'User ini bukan mahasiswa!');
+        }
+
+        try {
+            DB::beginTransaction();
+
+            // Delete student profile first (has foreign key)
+            $student->studentProfile()->delete();
+
+            // Delete user
+            $student->delete();
+
+            DB::commit();
+
+            return redirect()->route('admin.students.index')
+                ->with('success', 'Mahasiswa berhasil dihapus!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.students.index')
+                ->with('error', 'Gagal menghapus mahasiswa: ' . $e->getMessage());
+        }
+    }
 }

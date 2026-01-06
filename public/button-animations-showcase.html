@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Icon Animations Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ============================================
+           ENHANCED BUTTON WITH ICON ANIMATIONS
+           ============================================ */
+
+        /* Button Icon Container - Smooth hover effect */
+        @keyframes iconScale {
+            from {
+                transform: scale(1) rotate(0deg);
+            }
+            to {
+                transform: scale(1.15) rotate(8deg);
+            }
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        @keyframes buttonGlow {
+            from {
+                box-shadow: 0 0 0 0 rgba(34, 197, 254, 0.7);
+            }
+            to {
+                box-shadow: 0 0 0 15px rgba(34, 197, 254, 0);
+            }
+        }
+
+        /* Icon Pulse Animation */
+        @keyframes iconPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Smooth Button Click Animation */
+        @keyframes buttonClick {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Icon Bounce Animation */
+        @keyframes iconBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Staggered Button Animation for Button Groups */
+        @keyframes buttonSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth Text Animation */
+        @keyframes textSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Classes */
+        .icon-animated {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-with-icon:hover .icon-animated {
+            animation: iconScale 0.3s ease-out forwards;
+        }
+
+        .icon-float {
+            animation: iconFloat 2s ease-in-out infinite;
+        }
+
+        .btn-with-icon:active .icon-animated {
+            animation: buttonClick 0.4s ease-out;
+        }
+
+        .icon-glow {
+            transition: all 0.3s ease;
+        }
+
+        .btn-with-icon:hover .icon-glow {
+            filter: drop-shadow(0 0 8px rgba(34, 197, 254, 0.6));
+        }
+
+        .icon-pulse {
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        .icon-bounce {
+            animation: iconBounce 1.5s ease-in-out infinite;
+        }
+
+        .btn-group .btn-item {
+            animation: buttonSlideIn 0.5s ease-out forwards;
+        }
+
+        .btn-group .btn-item:nth-child(1) { animation-delay: 0s; }
+        .btn-group .btn-item:nth-child(2) { animation-delay: 0.1s; }
+        .btn-group .btn-item:nth-child(3) { animation-delay: 0.2s; }
+
+        .btn-with-icon .text-animated {
+            animation: textSlide 0.4s ease-out;
+            animation-delay: 0.1s;
+            animation-fill-mode: both;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            @apply bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 active:shadow-inner;
+        }
+
+        .btn-secondary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 active:shadow-inner;
+        }
+
+        .btn-outline {
+            @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition-all duration-300 active:scale-95 active:bg-blue-100;
+        }
+
+        .card-section {
+            @apply bg-white rounded-lg shadow-md p-8 mb-8;
+        }
+
+        .code-block {
+            @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm mb-6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-gray-900 mb-4">🎨 Button Icon Animations</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Advanced smooth animations untuk buttons dengan icon. Hover dan klik untuk melihat effect!
+            </p>
+        </div>
+
+        <!-- Section 1: Basic Icon Button -->
+        <div class="card-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">1️⃣ Basic Icon Button</h2>
+            <p class="text-gray-600 mb-6">Tombol dengan icon yang scale dan rotate saat hover.</p>
+            
+            <div class="flex flex-wrap gap-4 mb-8">
+                <button class="btn-primary inline-flex items-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    <span class="text-animated">Create</span>
+                </button>
+
+                <button class="btn-secondary inline-flex items-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span class="text-animated">Send</span>
+                </button>
+
+                <button class="btn-outline inline-flex items-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    <span class="text-animated">Close</span>
+                </button>
+            </div>
+
+            <div class="code-block">
+&lt;button class="btn-primary inline-flex items-center gap-2 btn-with-icon"&gt;
+    &lt;svg class="w-5 h-5 icon-animated"&gt;...&lt;/svg&gt;
+    &lt;span class="text-animated"&gt;Create&lt;/span&gt;
+&lt;/button&gt;
+            </div>
+        </div>
+
+        <!-- Section 2: Icon with Glow -->
+        <div class="card-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">✨ Icon with Glow Effect</h2>
+            <p class="text-gray-600 mb-6">Icon dengan drop shadow effect saat button di-hover.</p>
+            
+            <div class="flex flex-wrap gap-4 mb-8">
+                <button class="btn-primary inline-flex items-center gap-3 btn-with-icon px-6 py-3">
+                    <svg class="w-6 h-6 icon-animated icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-animated">Approve</span>
+                </button>
+
+                <button class="btn-secondary inline-flex items-center gap-3 btn-with-icon px-6 py-3">
+                    <svg class="w-6 h-6 icon-animated icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-animated">Success</span>
+                </button>
+
+                <button class="btn-outline inline-flex items-center gap-3 btn-with-icon px-6 py-3">
+                    <svg class="w-6 h-6 icon-animated icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-animated">Info</span>
+                </button>
+            </div>
+
+            <div class="code-block">
+&lt;button class="btn-primary inline-flex items-center gap-3 btn-with-icon"&gt;
+    &lt;svg class="w-6 h-6 icon-animated icon-glow"&gt;...&lt;/svg&gt;
+    &lt;span class="text-animated"&gt;Approve&lt;/span&gt;
+&lt;/button&gt;
+            </div>
+        </div>
+
+        <!-- Section 3: Floating Icon -->
+        <div class="card-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">🎈 Floating Icon</h2>
+            <p class="text-gray-600 mb-6">Icon yang terus mengapung naik-turun (continuous animation).</p>
+            
+            <div class="flex flex-wrap gap-6 mb-8">
+                <button class="btn-primary inline-flex items-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-float" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m2-1l-2-1m2 1v2.5"></path>
+                    </svg>
+                    <span>Floating</span>
+                </button>
+
+                <button class="btn-secondary inline-flex items-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-float" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <span>Upload</span>
+                </button>
+            </div>
+
+            <div class="code-block">
+&lt;svg class="w-5 h-5 icon-float"&gt;...&lt;/svg&gt;
+
+/* Animation akan terus berjalan selamanya */
+            </div>
+        </div>
+
+        <!-- Section 4: Bounce Icon (CTA) -->
+        <div class="card-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">🎯 Bounce Icon (Call-to-Action)</h2>
+            <p class="text-gray-600 mb-6">Icon yang bounce untuk menarik perhatian pada CTA buttons.</p>
+            
+            <div class="flex flex-wrap gap-4 mb-8">
+                <button class="btn-primary inline-flex items-center gap-2 btn-with-icon px-6 py-3 text-lg">
+                    <svg class="w-6 h-6 icon-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    <span>Start Now</span>
+                </button>
+
+                <button class="btn-secondary inline-flex items-center gap-2 btn-with-icon px-6 py-3 text-lg">
+                    <svg class="w-6 h-6 icon-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span>Get Started</span>
+                </button>
+            </div>
+
+            <div class="code-block">
+&lt;svg class="w-6 h-6 icon-bounce"&gt;...&lt;/svg&gt;
+
+/* Icon bounce terus menerus dengan interval 1.5s */
+            </div>
+        </div>
+
+        <!-- Section 5: Pulse Icon (Notification) -->
+        <div class="card-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">🔔 Pulse Icon (Notification)</h2>
+            <p class="text-gray-600 mb-6">Icon yang pulse untuk notifications dan attention indicators.</p>
+            
+            <div class="flex flex-wrap gap-6 mb-8">
+                <div class="relative">
+                    <button class="btn-primary inline-flex items-center gap-2 btn-with-icon">
+                        <svg class="w-5 h-5 icon-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span>Notify</span>
+                    </button>
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
+                </div>
+
+                <div class="relative">
+                    <button class="btn-secondary inline-flex items-center gap-2 btn-with-icon">
+                        <svg class="w-5 h-5 icon-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Message</span>
+                    </button>
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-orange-500 rounded-full animate-pulse"></span>
+                </div>
+            </div>
+
+            <div class="code-block">
+&lt;svg class="w-5 h-5 icon-pulse"&gt;...&lt;/svg&gt;
+
+/* Icon opacity berubah 0.7 - 1 dengan interval 2s */
+            </div>
+        </div>
+
+        <!-- Section 6: Button Group with Stagger -->
+        <div class="card-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">🎬 Staggered Button Group</h2>
+            <p class="text-gray-600 mb-6">Button group yang muncul satu per satu dengan delay.</p>
+            
+            <div class="btn-group space-y-3 mb-8 w-full max-w-xs">
+                <button class="btn-item btn-primary w-full inline-flex items-center justify-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    <span class="text-animated">Option 1</span>
+                </button>
+
+                <button class="btn-item btn-secondary w-full inline-flex items-center justify-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span class="text-animated">Option 2</span>
+                </button>
+
+                <button class="btn-item btn-outline w-full inline-flex items-center justify-center gap-2 btn-with-icon">
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-animated">Option 3</span>
+                </button>
+            </div>
+
+            <div class="code-block">
+&lt;div class="btn-group space-y-3"&gt;
+    &lt;button class="btn-item btn-primary"&gt;...&lt;/button&gt;
+    &lt;button class="btn-item btn-secondary"&gt;...&lt;/button&gt;
+    &lt;button class="btn-item btn-outline"&gt;...&lt;/button&gt;
+&lt;/div&gt;
+
+/* Setiap button muncul dengan delay 0.1s */
+            </div>
+        </div>
+
+        <!-- Section 7: Icon Position (Right) -->
+        <div class="card-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">⬅️ Icon Position: Right</h2>
+            <p class="text-gray-600 mb-6">Icon di sebelah kanan text untuk variasi.</p>
+            
+            <div class="flex flex-wrap gap-4 mb-8">
+                <button class="btn-primary inline-flex items-center gap-2 btn-with-icon">
+                    <span class="text-animated">Next</span>
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <button class="btn-secondary inline-flex items-center gap-2 btn-with-icon">
+                    <span class="text-animated">Download</span>
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                </button>
+
+                <button class="btn-outline inline-flex items-center gap-2 btn-with-icon">
+                    <span class="text-animated">Edit</span>
+                    <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="code-block">
+&lt;button class="btn-primary inline-flex items-center gap-2 btn-with-icon"&gt;
+    &lt;span class="text-animated"&gt;Next&lt;/span&gt;
+    &lt;svg class="w-5 h-5 icon-animated"&gt;...&lt;/svg&gt;
+&lt;/button&gt;
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="card-section bg-gradient-to-r from-blue-50 to-cyan-50 border-t-4 border-cyan-500">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">💡 Tips Menggunakan Animasi</h3>
+            <ul class="space-y-2 text-gray-700">
+                <li>✅ Gunakan <code class="bg-gray-200 px-2 py-1 rounded">.icon-animated</code> untuk scale & rotate on hover</li>
+                <li>✅ Gunakan <code class="bg-gray-200 px-2 py-1 rounded">.icon-glow</code> untuk drop shadow effect</li>
+                <li>✅ Gunakan <code class="bg-gray-200 px-2 py-1 rounded">.icon-float</code> untuk continuous floating animation</li>
+                <li>✅ Gunakan <code class="bg-gray-200 px-2 py-1 rounded">.icon-bounce</code> untuk call-to-action buttons</li>
+                <li>✅ Gunakan <code class="bg-gray-200 px-2 py-1 rounded">.icon-pulse</code> untuk notifications</li>
+                <li>✅ Wrap buttons dengan <code class="bg-gray-200 px-2 py-1 rounded">.btn-group</code> untuk staggered animations</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

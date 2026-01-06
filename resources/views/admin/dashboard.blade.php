@@ -12,18 +12,19 @@
     </p>
 </div>
 
-<!-- KPI Cards -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+<!-- KPI Cards with Animations -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4 btn-group">
     <!-- Total Reports -->
-    <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="btn-item bg-white rounded-lg shadow-md p-4 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-xs text-gray-600 mb-1">Total Laporan</p>
                 <p class="text-2xl font-bold text-gray-900">{{ $totalReports }}</p>
                 <p class="text-xs text-gray-500 mt-1">Semua waktu</p>
             </div>
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center transition-all duration-300 icon-animated group-hover:shadow-lg"
+                 style="animation: fadeIn 0.5s ease-out forwards; animation-delay: 0s;">
+                <svg class="w-7 h-7 text-blue-600 icon-glow transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
             </div>
@@ -31,15 +32,16 @@
     </div>
     
     <!-- Pending Reports -->
-    <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="btn-item bg-white rounded-lg shadow-md p-4 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-xs text-gray-600 mb-1">Perlu Ditangani</p>
                 <p class="text-2xl font-bold text-yellow-600">{{ $pendingReports }}</p>
                 <p class="text-xs text-gray-500 mt-1">Status: Menunggu</p>
             </div>
-            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-14 h-14 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-lg flex items-center justify-center transition-all duration-300 icon-animated group-hover:shadow-lg"
+                 style="animation: fadeIn 0.5s ease-out forwards; animation-delay: 0.1s;">
+                <svg class="w-7 h-7 text-yellow-600 icon-glow transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
             </div>
@@ -47,16 +49,17 @@
     </div>
     
     <!-- In Progress -->
-    <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="btn-item bg-white rounded-lg shadow-md p-4 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-xs text-gray-600 mb-1">Dalam Proses</p>
                 <p class="text-2xl font-bold text-purple-600">{{ $inProgressReports }}</p>
                 <p class="text-xs text-gray-500 mt-1">Sedang ditangani</p>
             </div>
-            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10. 325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <div class="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center transition-all duration-300 icon-animated group-hover:shadow-lg"
+                 style="animation: fadeIn 0.5s ease-out forwards; animation-delay: 0.2s;">
+                <svg class="w-7 h-7 text-purple-600 icon-glow transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
             </div>
@@ -64,20 +67,34 @@
     </div>
     
     <!-- Resolved -->
-    <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="btn-item bg-white rounded-lg shadow-md p-4 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-xs text-gray-600 mb-1">Selesai</p>
                 <p class="text-2xl font-bold text-green-600">{{ $resolvedReports }}</p>
                 <p class="text-xs text-gray-500 mt-1">Terselesaikan</p>
             </div>
-            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-14 h-14 bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center transition-all duration-300 icon-animated group-hover:shadow-lg"
+                 style="animation: fadeIn 0.5s ease-out forwards; animation-delay: 0.3s;">
+                <svg class="w-7 h-7 text-green-600 icon-glow transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
             </div>
         </div>
     </div>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </div>
 
 <!-- Secondary Stats -->

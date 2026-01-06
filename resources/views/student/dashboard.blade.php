@@ -39,63 +39,63 @@
      ============================================ -->
 
 <!-- Quick Actions -->
-<div class="grid md:grid-cols-3 gap-6 mb-8">
+<div class="grid md:grid-cols-3 gap-6 mb-8 btn-group">
     <!-- Tombol 1: Buat Laporan Baru (Primary Action) -->
     <a href="{{ route('student.reports.create') }}" 
-       class="card-elevated p-6 hover:shadow-xl transition-all duration-300 cursor-pointer group"
+       class="btn-item card-elevated p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer group btn-with-icon"
        x-data="{ clicked: false }"
        @click="clicked = true; setTimeout(() => clicked = false, 400)"
-       :class="clicked ? 'scale-95 shadow-2xl' : 'scale-100'">
+       :class="clicked ? 'scale-95 shadow-2xl ring-2 ring-cyan-300' : 'scale-100'">
         <div class="flex items-center space-x-4">
-            <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                 :class="clicked ? 'scale-125 rotate-12 bg-cyan-200' : 'scale-100'">
-                <svg class="w-6 h-6 text-cyan-600 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <div class="w-14 h-14 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-lg icon-animated"
+                 :class="clicked ? 'scale-125 rotate-12 bg-gradient-to-br from-cyan-200 to-cyan-300 shadow-lg' : 'scale-100'">
+                <svg class="w-7 h-7 text-cyan-600 transition-all duration-300 icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      :class="clicked ? 'scale-110' : 'scale-100'">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
             </div>
             <div>
-                <h3 class="font-semibold text-navy-900">Buat Laporan Baru</h3>
+                <h3 class="font-semibold text-navy-900 text-animated">Buat Laporan Baru</h3>
                 <p class="text-sm text-navy-600">Sampaikan keluhan atau aspirasi Anda</p>
             </div>
         </div>
     </a>
 
     <a href="{{ route('student.reports.index') }}" 
-       class="card-elevated p-6 hover:shadow-xl transition-all duration-300 cursor-pointer group"
+       class="btn-item card-elevated p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer group btn-with-icon"
        x-data="{ clicked: false }"
        @click="clicked = true; setTimeout(() => clicked = false, 400)"
-       :class="clicked ? 'scale-95 shadow-2xl' : 'scale-100'">
+       :class="clicked ? 'scale-95 shadow-2xl ring-2 ring-cyan-300' : 'scale-100'">
         <div class="flex items-center space-x-4">
-            <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                 :class="clicked ? 'scale-125 rotate-12 bg-cyan-200' : 'scale-100'">
-                <svg class="w-6 h-6 text-cyan-600 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <div class="w-14 h-14 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-lg icon-animated"
+                 :class="clicked ? 'scale-125 rotate-12 bg-gradient-to-br from-cyan-200 to-cyan-300 shadow-lg' : 'scale-100'">
+                <svg class="w-7 h-7 text-cyan-600 transition-all duration-300 icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      :class="clicked ? 'scale-110' : 'scale-100'">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
             </div>
             <div>
-                <h3 class="font-semibold text-navy-900">Lihat Laporan Saya</h3>
+                <h3 class="font-semibold text-navy-900 text-animated">Lihat Laporan Saya</h3>
                 <p class="text-sm text-navy-600">Pantau status laporan yang telah dibuat</p>
             </div>
         </div>
     </a>
 
     <a href="{{ route('student.profile.index') }}" 
-       class="card-elevated p-6 hover:shadow-xl transition-all duration-300 cursor-pointer group"
+       class="btn-item card-elevated p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer group btn-with-icon"
        x-data="{ clicked: false }"
        @click="clicked = true; setTimeout(() => clicked = false, 400)"
-       :class="clicked ? 'scale-95 shadow-2xl' : 'scale-100'">
+       :class="clicked ? 'scale-95 shadow-2xl ring-2 ring-cyan-300' : 'scale-100'">
         <div class="flex items-center space-x-4">
-            <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                 :class="clicked ? 'scale-125 rotate-12 bg-cyan-200' : 'scale-100'">
-                <svg class="w-6 h-6 text-cyan-600 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <div class="w-14 h-14 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-lg icon-animated"
+                 :class="clicked ? 'scale-125 rotate-12 bg-gradient-to-br from-cyan-200 to-cyan-300 shadow-lg' : 'scale-100'">
+                <svg class="w-7 h-7 text-cyan-600 transition-all duration-300 icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      :class="clicked ? 'scale-110' : 'scale-100'">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
             </div>
             <div>
-                <h3 class="font-semibold text-navy-900">Profil Saya</h3>
+                <h3 class="font-semibold text-navy-900 text-animated">Profil Saya</h3>
                 <p class="text-sm text-navy-600">Kelola informasi profil Anda</p>
             </div>
         </div>

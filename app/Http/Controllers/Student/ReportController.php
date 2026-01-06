@@ -340,7 +340,7 @@ class ReportController extends Controller
     # 4. Redirect ke index dengan success message
     
     /**
-     * Remove the specified report. 
+     * Remove the specified report.
      */
     public function destroy($id)
     {
@@ -363,7 +363,7 @@ class ReportController extends Controller
 
         # REDIRECT ke index dengan success message
         return redirect()->route('student.reports.index')
-            ->with('success', 'Laporan berhasil dihapus! ');
+            ->with('success', 'Laporan berhasil dihapus!');
     }
 
     # ===================================================================

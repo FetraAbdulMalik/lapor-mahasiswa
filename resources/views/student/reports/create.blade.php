@@ -50,17 +50,29 @@
     {{-- # FORM UTAMA - POST ke route student.reports.store --}}
     {{-- # enctype="multipart/form-data" untuk support upload file --}}
     {{-- # x-data="reportForm()" untuk Alpine.js state management --}}
-    {{-- # @submit event untuk disable button saat submit --}}
+    {{-- # @submit event untuk validate dan disable button saat submit --}}
     <form method="POST" action="{{ route('student.reports.store') }}" enctype="multipart/form-data" 
-          x-data="reportForm()" @submit="isSubmitting = true">
+          x-data="reportForm()" @submit="validateForm($event)">
         {{-- # CSRF Token untuk security Laravel --}}
         @csrf
+        
+        {{-- # ERROR ALERT - Tampilkan jika ada validation errors --}}
+        @if($errors->any())
+        <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <h4 class="font-semibold text-red-800 mb-2">⚠️ Ada kesalahan dalam pengisian form:</h4>
+            <ul class="list-disc list-inside text-red-700 text-sm space-y-1">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         
         {{-- # MAIN FORM CONTAINER --}}
         <div class="bg-white rounded-lg shadow-md p-8">
             
             {{-- # =====================================================
-                 STEP 1: PILIH KATEGORI LAPORAN
+                 STEP 1: PILIH KATEGORI LAPORAN (WITH ANIMATIONS)
                  ===================================================== --}}
             {{-- # User harus memilih kategori sesuai dengan masalahnya --}}
             <div class="mb-8">
@@ -72,7 +84,7 @@
                     {{-- # LOOP SETIAP KATEGORI DARI DATABASE --}}
                     @foreach($categories as $category)
                     {{-- # LABEL CONTAINER - Cursor pointer karena clickable --}}
-                    <label class="relative cursor-pointer">
+                    <label class="relative cursor-pointer group">
                         {{-- # RADIO INPUT KATEGORI - hidden (sr-only) tapi tetap functional --}}
                         {{-- # peer class untuk CSS styling berdasarkan checked state --}}
                         {{-- # old('category_id') untuk retain selection jika ada error --}}
@@ -84,22 +96,90 @@
                         {{-- # hover:border-accent-300 = border cyan saat hover --}}
                         {{-- # peer-checked:border-navy-800 = border navy saat radio checked --}}
                         {{-- # peer-checked:bg-blue-50 = background light blue saat radio checked --}}
-                        <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-accent-300 peer-checked:border-navy-800 peer-checked:bg-blue-50 transition">
+                        {{-- # ANIMASI TERSEDIA: fade-in scale hover, shadow, checked pulse effect --}}
+                        <div class="border-2 border-gray-200 rounded-lg p-4 
+                                    hover:border-accent-300 hover:shadow-lg hover:scale-105
+                                    peer-checked:border-navy-800 peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-navy-300
+                                    transition-all duration-300 ease-out
+                                    animate-fade-in"
+                             style="animation-fill-mode: both; animation-duration: 0.5s; animation-delay: {{ $loop->index * 0.1 }}s;">
                             {{-- # ICON EMOJI KATEGORI - Dari database --}}
-                            <div class="text-3xl mb-2">{{ $category->icon }}</div>
+                            {{-- # ANIMASI: Icon scale & rotate on hover --}}
+                            <div class="text-3xl mb-2 transform group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300 ease-out">
+                                {{ $category->icon }}
+                            </div>
                             {{-- # NAMA KATEGORI --}}
                             <div class="font-bold text-gray-900 mb-1">{{ $category->name }}</div>
                             {{-- # DESKRIPSI KATEGORI - Limit 60 karakter untuk brevity --}}
                             <div class="text-sm text-gray-600">{{ Str::limit($category->description, 60) }}</div>
+                            
+                            {{-- # CHECKMARK INDICATOR - Muncul saat card di-check --}}
+                            <div class="absolute top-2 right-2 w-6 h-6 bg-navy-800 rounded-full flex items-center justify-center opacity-0 peer-checked:opacity-100 transform scale-0 peer-checked:scale-100 transition-all duration-300">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
                         </div>
                     </label>
                     @endforeach
                 </div>
                 {{-- # ERROR MESSAGE - Tampil jika kategori belum dipilih saat submit --}}
                 @error('category_id')
-                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    <p class="mt-2 text-sm text-red-600 animate-shake">{{ $message }}</p>
                 @enderror
             </div>
+            
+            {{-- # GLOBAL STYLES UNTUK ANIMASI --}}
+            <style>
+                /* Fade in animation untuk category cards */
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .animate-fade-in {
+                    animation: fadeIn forwards;
+                }
+                
+                /* Shake animation untuk error message */
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-5px); }
+                    75% { transform: translateX(5px); }
+                }
+                
+                .animate-shake {
+                    animation: shake 0.4s ease-in-out;
+                }
+                
+                /* Enhanced hover effect - smooth glow */
+                label.group:hover .border-gray-200 {
+                    box-shadow: 0 0 15px rgba(34, 197, 254, 0.1);
+                }
+                
+                /* Smooth radio transition */
+                input[type="radio"]:checked + div {
+                    animation: pulse 0.5s ease-out;
+                }
+                
+                @keyframes pulse {
+                    0% {
+                        box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.7);
+                    }
+                    70% {
+                        box-shadow: 0 0 0 10px rgba(30, 58, 138, 0);
+                    }
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(30, 58, 138, 0);
+                    }
+                }
+            </style>
             
             {{-- # HORIZONTAL LINE SEPARATOR antara step 1 dan step 2 --}}
             <hr class="my-8">
@@ -377,7 +457,7 @@
                     {{-- # NORMAL TEXT - Tampil saat tidak submitting --}}
                     <span x-show="! isSubmitting">Kirim Laporan</span>
                     {{-- # LOADING STATE - Tampil saat sedang submit dengan spinner icon --}}
-                    <span x-show="isSubmitting" class="flex items-center">
+                    <span x-show="isSubmitting" class="flex items-center">>
                         {{-- # SPINNER SVG ICON - Animated circle untuk loading visual --}}
                         <svg class="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -400,7 +480,71 @@
 {{-- # isSubmitting: boolean flag untuk prevent double submit dan tampilkan loading state --}}
 function reportForm() {
     return {
-        isSubmitting: false
+        isSubmitting: false,
+        {{-- # VALIDASI FORM CLIENT-SIDE --}}
+        {{-- # Cek field required sebelum submit --}}
+        validateForm(event) {
+            {{-- # GET FORM REFERENCE --}}
+            const form = event.target;
+            let hasError = false;
+            const errorMessages = [];
+            
+            {{-- # VALIDASI: CATEGORY HARUS DIPILIH --}}
+            const categoryChecked = form.querySelector('input[name="category_id"]:checked');
+            if (!categoryChecked) {
+                hasError = true;
+                errorMessages.push('❌ Pilih kategori laporan terlebih dahulu');
+            }
+            
+            {{-- # VALIDASI: TITLE TIDAK BOLEH KOSONG --}}
+            const titleInput = form.querySelector('input[name="title"]');
+            if (!titleInput.value.trim()) {
+                hasError = true;
+                errorMessages.push('❌ Judul laporan tidak boleh kosong');
+            }
+            
+            {{-- # VALIDASI: DESCRIPTION MINIMAL 50 KARAKTER --}}
+            const descriptionInput = form.querySelector('textarea[name="description"]');
+            if (!descriptionInput.value.trim()) {
+                hasError = true;
+                errorMessages.push('❌ Deskripsi laporan tidak boleh kosong');
+            } else if (descriptionInput.value.trim().length < 50) {
+                hasError = true;
+                errorMessages.push('❌ Deskripsi minimal 50 karakter (saat ini: ' + descriptionInput.value.trim().length + ')');
+            }
+            
+            {{-- # VALIDASI: PRIORITY HARUS DIPILIH --}}
+            const prioritySelect = form.querySelector('select[name="priority"]');
+            if (!prioritySelect.value) {
+                hasError = true;
+                errorMessages.push('❌ Pilih prioritas laporan');
+            }
+            
+            {{-- # VALIDASI: VISIBILITY HARUS DIPILIH --}}
+            const visibilitySelect = form.querySelector('select[name="visibility"]');
+            if (!visibilitySelect.value) {
+                hasError = true;
+                errorMessages.push('❌ Pilih tipe visibilitas laporan');
+            }
+            
+            {{-- # VALIDASI: TERMS CHECKBOX HARUS DICENTANG --}}
+            const termsCheckbox = form.querySelector('input[name="terms"]');
+            if (!termsCheckbox.checked) {
+                hasError = true;
+                errorMessages.push('❌ Setujui persyaratan sebelum mengirim laporan');
+            }
+            
+            {{-- # JIKA ADA ERROR, TAMPILKAN ALERT DAN PREVENT FORM SUBMIT --}}
+            if (hasError) {
+                alert('⚠️ Mohon lengkapi form terlebih dahulu:\n\n' + errorMessages.join('\n'));
+                event.preventDefault();
+                return false;
+            }
+            
+            {{-- # SEMUA VALIDASI PASSED, SET SUBMITTING STATE & ALLOW FORM SUBMIT --}}
+            this.isSubmitting = true;
+            return true;
+        }
     }
 }
 

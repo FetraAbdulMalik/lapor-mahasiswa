@@ -57,11 +57,17 @@
             </div>
             
             <div class="flex items-end space-x-2">
-                <button type="submit" class="flex-1 btn-primary text-sm">
-                    Filter
+                <button type="submit" class="flex-1 btn-primary text-sm flex items-center justify-center space-x-2 group hover:shadow-lg transition-all duration-300">
+                    <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                    </svg>
+                    <span>Filter</span>
                 </button>
-                <a href="{{ route('admin.reports.index') }}" class="btn-secondary text-sm">
-                    Reset
+                <a href="{{ route('admin.reports.index') }}" class="btn-secondary text-sm flex items-center justify-center space-x-2 group hover:shadow-lg transition-all duration-300">
+                    <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    <span>Reset</span>
                 </a>
             </div>
         </div>
@@ -77,11 +83,17 @@
                 <input type="date" name="date_to" value="{{ request('date_to') }}" class="input-field text-sm">
             </div>
             <div class="flex items-end space-x-2">
-                <a href="{{ route('admin.reports.export.excel', request()->all()) }}" class="flex-1 btn-outline text-sm text-center">
-                    📊 Export Excel
+                <a href="{{ route('admin.reports.export.excel', request()->all()) }}" class="flex-1 btn-outline text-sm text-center flex items-center justify-center space-x-2 group hover:shadow-lg transition-all duration-300">
+                    <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>📊 Export Excel</span>
                 </a>
-                <a href="{{ route('admin.reports.export.pdf', request()->all()) }}" class="flex-1 btn-outline text-sm text-center">
-                    📄 Export PDF
+                <a href="{{ route('admin.reports.export.pdf', request()->all()) }}" class="flex-1 btn-outline text-sm text-center flex items-center justify-center space-x-2 group hover:shadow-lg transition-all duration-300">
+                    <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>📄 Export PDF</span>
                 </a>
             </div>
         </div>
@@ -171,8 +183,11 @@
                     </td>
                     <td class="px-4 py-4">
                         <a href="{{ route('admin.reports.show', $report->id) }}" 
-                           class="text-navy-800 hover:text-navy-700 text-sm font-medium">
-                            Detail →
+                           class="text-navy-800 hover:text-navy-700 text-sm font-medium flex items-center space-x-1 group transition-all duration-300 hover:scale-105">
+                            <svg class="w-4 h-4 icon-animated group-hover:icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Detail</span>
                         </a>
                     </td>
                 </tr>
@@ -204,14 +219,23 @@
             <span id="selectedCount">0</span> laporan dipilih
         </div>
         <div class="flex items-center space-x-4">
-            <button onclick="bulkAssign()" class="btn-primary text-sm">
-                Assign ke Admin
+            <button onclick="bulkAssign()" class="btn-primary text-sm flex items-center space-x-2 group hover:shadow-lg transition-all duration-300">
+                <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                </svg>
+                <span>Assign ke Admin</span>
             </button>
-            <button onclick="bulkChangeStatus()" class="btn-secondary text-sm">
-                Ubah Status
+            <button onclick="bulkChangeStatus()" class="btn-secondary text-sm flex items-center space-x-2 group hover:shadow-lg transition-all duration-300">
+                <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>Ubah Status</span>
             </button>
-            <button onclick="clearSelection()" class="text-white hover:text-gray-300 text-sm">
-                Batal
+            <button onclick="clearSelection()" class="text-white hover:text-gray-300 text-sm flex items-center space-x-2 group">
+                <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <span>Batal</span>
             </button>
         </div>
     </div>

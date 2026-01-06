@@ -36,7 +36,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'code' => 'required|string|max:10|unique:report_categories,code',
+            'slug' => 'required|string|max:255|unique:report_categories,slug',
             'description' => 'nullable|string',
             'icon' => 'nullable|string|max:50',
             'color' => 'nullable|string|max:7',

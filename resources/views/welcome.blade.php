@@ -22,24 +22,36 @@
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 @auth
                     <a href="{{ auth()->user()->isStudent() ? route('student.dashboard') : route('admin.dashboard') }}" 
-                       class="btn-primary px-8 py-4 text-lg inline-flex items-center justify-center space-x-2 group">
-                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       class="btn-primary px-8 py-4 text-lg inline-flex items-center justify-center space-x-2 group btn-with-icon"
+                       x-data="{ clicked: false }"
+                       @click="clicked = true; setTimeout(() => clicked = false, 400)"
+                       :class="clicked ? 'scale-95' : 'scale-100'">
+                        <svg class="w-6 h-6 icon-animated icon-glow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             :class="clicked ? 'scale-110 rotate-12' : 'scale-100'">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                         </svg>
-                        <span>Ke Dashboard</span>
+                        <span class="text-animated">Ke Dashboard</span>
                     </a>
                 @else
-                    <a href="{{ route('register') }}" class="btn-secondary px-8 py-4 text-lg inline-flex items-center justify-center space-x-2 group">
-                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('register') }}" class="btn-secondary px-8 py-4 text-lg inline-flex items-center justify-center space-x-2 group btn-with-icon"
+                       x-data="{ clicked: false }"
+                       @click="clicked = true; setTimeout(() => clicked = false, 400)"
+                       :class="clicked ? 'scale-95' : 'scale-100'">
+                        <svg class="w-6 h-6 icon-animated icon-glow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             :class="clicked ? 'scale-110 rotate-12' : 'scale-100'">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                         </svg>
-                        <span>Daftar Sekarang</span>
+                        <span class="text-animated">Daftar Sekarang</span>
                     </a>
-                    <a href="{{ route('login') }}" class="btn-outline px-8 py-4 text-lg inline-flex items-center justify-center space-x-2 group">
-                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="{{ route('login') }}" class="btn-outline px-8 py-4 text-lg inline-flex items-center justify-center space-x-2 group btn-with-icon"
+                       x-data="{ clicked: false }"
+                       @click="clicked = true; setTimeout(() => clicked = false, 400)"
+                       :class="clicked ? 'scale-95' : 'scale-100'">
+                        <svg class="w-6 h-6 icon-animated icon-glow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             :class="clicked ? 'scale-110 rotate-12' : 'scale-100'">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                         </svg>
-                        <span>Masuk</span>
+                        <span class="text-animated">Masuk</span>
                     </a>
                 @endauth
             </div>

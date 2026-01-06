@@ -109,9 +109,10 @@
                 <div>
                     <h3 class="text-lg font-bold mb-4">Kontak</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li>📧 lapor@university.ac.id</li>
+                        <li>📧 TB-Kelompok2</li>
                         <li>📞 021-12345678</li>
                         <li>📍 Jl. Raya Kampus No. 1</li>
+                        <li>�  anggota Fetra, Sandra, Agni</li>
                     </ul>
                 </div>
             </div>

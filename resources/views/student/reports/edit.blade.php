@@ -14,9 +14,21 @@
 
     <!-- Edit Form -->
     <form method="POST" action="{{ route('student.reports.update', $report->id) }}" enctype="multipart/form-data" 
-          x-data="reportForm()" @submit="isSubmitting = true">
+          x-data="reportForm()" @submit="validateForm($event)">
         @csrf
         @method('PUT')
+        
+        {{-- # ERROR ALERT - Tampilkan jika ada validation errors --}}
+        @if($errors->any())
+        <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <h4 class="font-semibold text-red-800 mb-2">⚠️ Ada kesalahan dalam pengisian form:</h4>
+            <ul class="list-disc list-inside text-red-700 text-sm space-y-1">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         
         <div class="bg-white rounded-lg shadow-md p-8">
             
@@ -218,6 +230,56 @@
     function reportForm() {
         return {
             isSubmitting: false,
+            {{-- # VALIDASI FORM CLIENT-SIDE --}}
+            {{-- # Cek field required sebelum submit --}}
+            validateForm(event) {
+                {{-- # GET FORM REFERENCE --}}
+                const form = event.target;
+                let hasError = false;
+                const errorMessages = [];
+                
+                {{-- # VALIDASI: CATEGORY HARUS DIPILIH --}}
+                const categorySelect = form.querySelector('select[name="category_id"]');
+                if (!categorySelect.value) {
+                    hasError = true;
+                    errorMessages.push('❌ Pilih kategori laporan terlebih dahulu');
+                }
+                
+                {{-- # VALIDASI: TITLE TIDAK BOLEH KOSONG --}}
+                const titleInput = form.querySelector('input[name="title"]');
+                if (!titleInput.value.trim()) {
+                    hasError = true;
+                    errorMessages.push('❌ Judul laporan tidak boleh kosong');
+                }
+                
+                {{-- # VALIDASI: DESCRIPTION MINIMAL 50 KARAKTER --}}
+                const descriptionInput = form.querySelector('textarea[name="description"]');
+                if (!descriptionInput.value.trim()) {
+                    hasError = true;
+                    errorMessages.push('❌ Deskripsi laporan tidak boleh kosong');
+                } else if (descriptionInput.value.trim().length < 50) {
+                    hasError = true;
+                    errorMessages.push('❌ Deskripsi minimal 50 karakter (saat ini: ' + descriptionInput.value.trim().length + ')');
+                }
+                
+                {{-- # VALIDASI: PRIORITY HARUS DIPILIH --}}
+                const prioritySelect = form.querySelector('select[name="priority"]');
+                if (!prioritySelect.value) {
+                    hasError = true;
+                    errorMessages.push('❌ Pilih prioritas laporan');
+                }
+                
+                {{-- # JIKA ADA ERROR, TAMPILKAN ALERT DAN PREVENT FORM SUBMIT --}}
+                if (hasError) {
+                    alert('⚠️ Mohon lengkapi form terlebih dahulu:\n\n' + errorMessages.join('\n'));
+                    event.preventDefault();
+                    return false;
+                }
+                
+                {{-- # SEMUA VALIDASI PASSED, SET SUBMITTING STATE & ALLOW FORM SUBMIT --}}
+                this.isSubmitting = true;
+                return true;
+            },
             loadFacilities() {
                 const buildingId = document.getElementById('building_id').value;
                 if (!buildingId) {

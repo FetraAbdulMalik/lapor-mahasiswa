@@ -1133,3 +1133,154 @@ html {
 .icon-pop {
     animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+
+/* ============================================
+   ENHANCED BUTTON WITH ICON ANIMATIONS
+   ============================================
+   Animasi smooth & professional untuk buttons
+   dengan icon yang menarik dan responsif
+   ============================================ */
+
+/* Button Icon Container - Smooth hover effect */
+@keyframes iconScale {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1.15) rotate(8deg);
+    }
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes buttonGlow {
+    from {
+        box-shadow: 0 0 0 0 rgba(34, 197, 254, 0.7);
+    }
+    to {
+        box-shadow: 0 0 0 15px rgba(34, 197, 254, 0);
+    }
+}
+
+/* Icon Pulse Animation */
+@keyframes iconPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Smooth Button Click Animation */
+@keyframes buttonClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Icon Bounce Animation */
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Enhanced Hover Classes for Icon Buttons */
+.btn-with-icon {
+    position: relative;
+    overflow: visible;
+}
+
+.btn-with-icon .icon-animated {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-with-icon:hover .icon-animated {
+    animation: iconScale 0.3s ease-out forwards;
+}
+
+/* Icon Float Effect */
+.icon-float {
+    animation: iconFloat 2s ease-in-out infinite;
+}
+
+.btn-with-icon:active .icon-animated {
+    animation: buttonClick 0.4s ease-out;
+}
+
+/* Glow Effect for Important Icons */
+.icon-glow {
+    transition: all 0.3s ease;
+}
+
+.btn-with-icon:hover .icon-glow {
+    filter: drop-shadow(0 0 8px rgba(34, 197, 254, 0.6));
+}
+
+/* Icon Pulse for Notifications */
+.icon-pulse {
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+/* Bounce Animation for CTAs */
+.icon-bounce {
+    animation: iconBounce 1.5s ease-in-out infinite;
+}
+
+/* Staggered Button Animation for Button Groups */
+@keyframes buttonSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-group .btn-item {
+    animation: buttonSlideIn 0.5s ease-out forwards;
+}
+
+.btn-group .btn-item:nth-child(1) { animation-delay: 0s; }
+.btn-group .btn-item:nth-child(2) { animation-delay: 0.1s; }
+.btn-group .btn-item:nth-child(3) { animation-delay: 0.2s; }
+.btn-group .btn-item:nth-child(4) { animation-delay: 0.3s; }
+.btn-group .btn-item:nth-child(5) { animation-delay: 0.4s; }
+.btn-group .btn-item:nth-child(n+6) { animation-delay: 0.5s; }
+
+/* Smooth Text Animation */
+@keyframes textSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.btn-with-icon .text-animated {
+    animation: textSlide 0.4s ease-out;
+    animation-delay: 0.1s;
+    animation-fill-mode: both;
+}

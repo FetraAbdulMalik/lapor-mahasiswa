@@ -109,7 +109,6 @@
                             </p>
                         </div>
                     </div>
-                @endauth
                     <form method="POST" action="{{ route('logout') }}" class="mt-3">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-2 text-sm font-medium text-navy-600 bg-navy-50 hover:bg-navy-100 rounded-lg transition-all duration-300 border border-navy-200 hover:border-navy-300 hover:text-navy-700">
@@ -117,97 +116,10 @@
                         </button>
                     </form>
                 </div>
+                @endauth
             </div>
         </aside>
-        
-        <!-- Contact Info Sidebar -->
-        @if(!isset($hideSidebar) || !$hideSidebar)
-        <aside class="w-80 bg-gradient-to-b from-blue-50 to-indigo-50 border-l border-blue-200 hidden xl:block flex-shrink-0 overflow-y-auto">
-            <div class="p-6 space-y-6">
-                <!-- Contact Header -->
-                <div class="text-center border-b border-blue-200 pb-6">
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Hubungi Kami</h3>
-                    <p class="text-sm text-gray-600">Kami siap membantu Anda</p>
-                </div>
 
-                <!-- Email Card -->
-                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-blue-100">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-sm font-semibold text-gray-900 mb-1">Email</h4>
-                            <a href="mailto:support@lapormahasiswa.ac.id" class="text-sm text-blue-600 hover:text-blue-700 font-medium break-all">
-                                support@lapormahasiswa.ac.id
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phone Card -->
-                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-green-100">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-sm font-semibold text-gray-900 mb-1">Telepon</h4>
-                            <a href="tel:+62-XXX-XXXX-XXXX" class="text-sm text-green-600 hover:text-green-700 font-medium">
-                                +62-XXX-XXXX-XXXX
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Location Card -->
-                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 border border-red-100">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-sm font-semibold text-gray-900 mb-1">Lokasi</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed">
-                                Kampus Utama, Gedung A<br>
-                                Jalan Universitas No. 1
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Divider -->
-                <div class="border-t border-blue-200"></div>
-
-                <!-- CTA Button -->
-                <a href="{{ route('contact') }}" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-lg text-center transition-all duration-300 shadow-md hover:shadow-lg">
-                    Kirim Pesan
-                </a>
-
-                <!-- Support Info -->
-                <div class="bg-white rounded-lg p-4 border border-indigo-100">
-                    <p class="text-xs text-gray-600 text-center">
-                        <span class="font-semibold text-gray-900">Jam Kerja:</span><br>
-                        Senin - Jumat: 08:00 - 17:00<br>
-                        <span class="text-xs text-gray-500">Waktu Setempat</span>
-                    </p>
-                </div>
-            </div>
-        </aside>
-        @endif
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">

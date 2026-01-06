@@ -118,7 +118,7 @@
                                 <span>🕒 {{ $report->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
-                        <a href="{{ route('admin.reports. show', $report->id) }}" 
+                        <a href="{{ route('admin.reports.show', $report->id) }}" 
                            class="ml-4 text-navy-800 hover:text-navy-700">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

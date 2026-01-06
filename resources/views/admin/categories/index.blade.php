@@ -8,8 +8,11 @@
         <h2 class="text-2xl font-bold text-gray-900 mb-2">Kelola Kategori Laporan</h2>
         <p class="text-gray-600">Kelola kategori laporan mahasiswa</p>
     </div>
-    <a href="{{ route('admin.categories.create') }}" class="btn-primary">
-        ➕ Tambah Kategori
+    <a href="{{ route('admin.categories.create') }}" class="btn-primary flex items-center space-x-2 group hover:shadow-lg transition-all duration-300">
+        <svg class="w-5 h-5 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        <span>Tambah Kategori</span>
     </a>
 </div>
 
@@ -81,13 +84,20 @@
                 <td class="px-6 py-4">
                     <div class="flex items-center space-x-2">
                         <a href="{{ route('admin.categories.show', $category->id) }}" 
-                           class="text-navy-800 hover:text-navy-700 text-sm font-medium">
-                            Lihat
+                           class="text-navy-800 hover:text-navy-700 text-sm font-medium flex items-center space-x-1 group transition-all duration-300 hover:scale-105">
+                            <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            <span>Lihat</span>
                         </a>
                         <span class="text-gray-300">|</span>
                         <a href="{{ route('admin.categories.edit', $category->id) }}" 
-                           class="text-gray-600 hover:text-gray-900 text-sm">
-                            Edit
+                           class="text-gray-600 hover:text-gray-900 text-sm flex items-center space-x-1 group transition-all duration-300 hover:scale-105">
+                            <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                            <span>Edit</span>
                         </a>
                         <span class="text-gray-300">|</span>
                         <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}" 
@@ -95,8 +105,11 @@
                               onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm">
-                                Hapus
+                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm flex items-center space-x-1 group transition-all duration-300 hover:scale-105">
+                                <svg class="w-4 h-4 icon-animated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                                <span>Hapus</span>
                             </button>
                         </form>
                     </div>
